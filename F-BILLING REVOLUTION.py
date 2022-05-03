@@ -29,6 +29,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
 import smtplib
+import datetime as dt
+
 
 def reset():
   global root
@@ -919,123 +921,123 @@ def printsele():
 
 #email
       
-def emailord():
-  mailDetail=Toplevel()
-  mailDetail.title("Orders E-Mail")
-  p2 = PhotoImage(file = "images/fbicon.png")
-  mailDetail.iconphoto(False, p2)
-  mailDetail.geometry("1030x550+150+120")
+# def emailord():
+#   mailDetail=Toplevel()
+#   mailDetail.title("Orders E-Mail")
+#   p2 = PhotoImage(file = "images/fbicon.png")
+#   mailDetail.iconphoto(False, p2)
+#   mailDetail.geometry("1030x550+150+120")
  
-  def my_SMTP():
-      if True:
-          em_ser_conbtn.destroy()
-          mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
-          mysmtpservercon.place(x=610, y=110)
-          lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
-          hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
-          lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
-          portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
-          lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
-          unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
-          lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
-          pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
-          ssl_chkvar=IntVar()
-          ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
-          ssl_chkbtn.place(x=50, y=110)
-          em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
-      else:
-          pass
+#   def my_SMTP():
+#       if True:
+#           em_ser_conbtn.destroy()
+#           mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
+#           mysmtpservercon.place(x=610, y=110)
+#           lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
+#           hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
+#           lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
+#           portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
+#           lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
+#           unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
+#           lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
+#           pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
+#           ssl_chkvar=IntVar()
+#           ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
+#           ssl_chkbtn.place(x=50, y=110)
+#           em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
+#       else:
+#           pass
     
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", padding=5)
-  email_Notebook = ttk.Notebook(mailDetail)
-  email_Frame = Frame(email_Notebook, height=500, width=1080)
-  account_Frame = Frame(email_Notebook, height=550, width=1080)
-  email_Notebook.add(email_Frame, text="E-mail")
-  email_Notebook.add(account_Frame, text="Account")
-  email_Notebook.place(x=0, y=0)
-  messagelbframe=LabelFrame(email_Frame,text="Message", height=495, width=730)
-  messagelbframe.place(x=5, y=5)
-  lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
-  emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
-  sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1).place(x=600, y=10)
-  lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
-  carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
-  stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
-  lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
-  subent=Entry(messagelbframe, width=50).place(x=120, y=59)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", padding=5)
+#   email_Notebook = ttk.Notebook(mailDetail)
+#   email_Frame = Frame(email_Notebook, height=500, width=1080)
+#   account_Frame = Frame(email_Notebook, height=550, width=1080)
+#   email_Notebook.add(email_Frame, text="E-mail")
+#   email_Notebook.add(account_Frame, text="Account")
+#   email_Notebook.place(x=0, y=0)
+#   messagelbframe=LabelFrame(email_Frame,text="Message", height=495, width=730)
+#   messagelbframe.place(x=5, y=5)
+#   lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
+#   emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
+#   sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1).place(x=600, y=10)
+#   lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
+#   carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
+#   stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
+#   lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
+#   subent=Entry(messagelbframe, width=50).place(x=120, y=59)
 
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
-  mess_Notebook = ttk.Notebook(messagelbframe)
-  emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
-  htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
-  mess_Notebook.add(emailmessage_Frame, text="E-mail message")
-  mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
-  mess_Notebook.place(x=5, y=90)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
+#   mess_Notebook = ttk.Notebook(messagelbframe)
+#   emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
+#   htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
+#   mess_Notebook.add(emailmessage_Frame, text="E-mail message")
+#   mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
+#   mess_Notebook.place(x=5, y=90)
 
-  btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)  
-  btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
-  btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
-  btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
-  btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
-  btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
-  btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
-  btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
-  btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
-  btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
-  btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
+#   btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)  
+#   btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
+#   btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
+#   btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
+#   btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
+#   btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
+#   btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
+#   btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
+#   btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
+#   btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
+#   btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
 
-  dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
-  dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
-  mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-  btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
-  btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-  attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
-  attachlbframe.place(x=740, y=5)
-  htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
-  lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
-  btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
-  btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
-  lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
-  lbl_tt_info.place(x=740, y=370)
+#   dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
+#   dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
+#   mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+#   btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+#   attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
+#   attachlbframe.place(x=740, y=5)
+#   htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
+#   lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
+#   btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
+#   btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
+#   lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
+#   lbl_tt_info.place(x=740, y=370)
 
-  ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+#   ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
   
-  sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
-  sendatalbframe.place(x=5, y=5)
-  lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
-  sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
-  lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
-  nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
-  lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
-  replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
-  lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
-  signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
-  confirm_chkvar=IntVar()
-  confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
-  confirm_chkbtn.place(x=200, y=215)
-  btn18=Button(account_Frame, width=15, text="Save settings").place(x=25, y=285)
+#   sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
+#   sendatalbframe.place(x=5, y=5)
+#   lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
+#   sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
+#   lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
+#   nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
+#   lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
+#   replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
+#   lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
+#   signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
+#   confirm_chkvar=IntVar()
+#   confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
+#   confirm_chkbtn.place(x=200, y=215)
+#   btn18=Button(account_Frame, width=15, text="Save settings").place(x=25, y=285)
 
-  sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
-  sendatalbframe.place(x=610, y=5)
-  servar=IntVar()
-  SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
-  SMTP_rbtn.place(x=10, y=10)
-  MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
-  MySMTP_rbtn.place(x=10, y=40)
-  em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
-  em_ser_conbtn.place(x=710, y=110)
+#   sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
+#   sendatalbframe.place(x=610, y=5)
+#   servar=IntVar()
+#   SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
+#   SMTP_rbtn.place(x=10, y=10)
+#   MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
+#   MySMTP_rbtn.place(x=10, y=40)
+#   em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
+#   em_ser_conbtn.place(x=710, y=110)
 
 
 
@@ -1221,7 +1223,7 @@ purchaseLabel.pack(side="left")
 w = Canvas(midFrame, width=1, height=55, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-expenseLabel = Button(midFrame,compound="top", text=" E-mail \nEstimate",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=emailord)
+expenseLabel = Button(midFrame,compound="top", text=" E-mail \nEstimate",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55)
 expenseLabel.pack(side="left")
 
 smsLabel = Button(midFrame,compound="top", text="Send SMS\nnotification",relief=RAISED, image=photo10,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=sms)
@@ -2023,132 +2025,460 @@ def printinvoice_customer():
 
 #EMAIL INVOICE LIST
    
-def emailinvoice_customer():
-  mailDetail=Toplevel()
-  mailDetail.title("E-Mail Invoice List")
-  p2 = PhotoImage(file = "images/fbicon.png")
-  mailDetail.iconphoto(False, p2)
-  mailDetail.geometry("1030x550+150+120")
+# def emailinvoice_customer():
+#   mailDetail=Toplevel()
+#   mailDetail.title("E-Mail Invoice List")
+#   p2 = PhotoImage(file = "images/fbicon.png")
+#   mailDetail.iconphoto(False, p2)
+#   mailDetail.geometry("1030x550+150+120")
  
-  def my_SMTP():
-      if True:
-          em_ser_conbtn.destroy()
-          mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
-          mysmtpservercon.place(x=610, y=110)
-          lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
-          hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
-          lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
-          portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
-          lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
-          unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
-          lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
-          pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
-          ssl_chkvar=IntVar()
-          ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
-          ssl_chkbtn.place(x=50, y=110)
-          em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
-      else:
-          pass
+#   def my_SMTP():
+#       if True:
+#           em_ser_conbtn.destroy()
+#           mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
+#           mysmtpservercon.place(x=610, y=110)
+#           lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
+#           hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
+#           lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
+#           portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
+#           lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
+#           unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
+#           lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
+#           pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
+#           ssl_chkvar=IntVar()
+#           ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
+#           ssl_chkbtn.place(x=50, y=110)
+#           em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
+#       else:
+#           pass
     
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", padding=5)
-  email_Notebook = ttk.Notebook(mailDetail)
-  email_Frame = Frame(email_Notebook, height=500, width=1080)
-  account_Frame = Frame(email_Notebook, height=550, width=1080)
-  email_Notebook.add(email_Frame, text="E-mail")
-  email_Notebook.add(account_Frame, text="Account")
-  email_Notebook.place(x=0, y=0)
-  messagelbframe=LabelFrame(email_Frame,text="Message", height=495, width=730)
-  messagelbframe.place(x=5, y=5)
-  lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
-  emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
-  sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1).place(x=600, y=10)
-  lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
-  carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
-  stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
-  lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
-  subent=Entry(messagelbframe, width=50).place(x=120, y=59)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", padding=5)
+#   email_Notebook = ttk.Notebook(mailDetail)
+#   email_Frame = Frame(email_Notebook, height=500, width=1080)
+#   account_Frame = Frame(email_Notebook, height=550, width=1080)
+#   email_Notebook.add(email_Frame, text="E-mail")
+#   email_Notebook.add(account_Frame, text="Account")
+#   email_Notebook.place(x=0, y=0)
+#   messagelbframe=LabelFrame(email_Frame,text="Message", height=495, width=730)
+#   messagelbframe.place(x=5, y=5)
+#   lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
+#   emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
+#   sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1).place(x=600, y=10)
+#   lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
+#   carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
+#   stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
+#   lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
+#   subent=Entry(messagelbframe, width=50).place(x=120, y=59)
 
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
-  mess_Notebook = ttk.Notebook(messagelbframe)
-  emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
-  htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
-  mess_Notebook.add(emailmessage_Frame, text="E-mail message")
-  mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
-  mess_Notebook.place(x=5, y=90)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
+#   mess_Notebook = ttk.Notebook(messagelbframe)
+#   emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
+#   htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
+#   mess_Notebook.add(emailmessage_Frame, text="E-mail message")
+#   mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
+#   mess_Notebook.place(x=5, y=90)
 
-  btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)  
-  btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
-  btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
-  btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
-  btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
-  btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
-  btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
-  btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
-  btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
-  btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
-  btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
+#   btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)  
+#   btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
+#   btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
+#   btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
+#   btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
+#   btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
+#   btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
+#   btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
+#   btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
+#   btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
+#   btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
 
-  dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
-  dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
-  mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-  btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
-  btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-  attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
-  attachlbframe.place(x=740, y=5)
-  htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
-  lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
-  btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
-  btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
-  lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
-  lbl_tt_info.place(x=740, y=370)
+#   dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
+#   dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
+#   mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+#   btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+#   attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
+#   attachlbframe.place(x=740, y=5)
+#   htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
+#   lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
+#   btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
+#   btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
+#   lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
+#   lbl_tt_info.place(x=740, y=370)
 
-  ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+#   ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
   
-  sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
-  sendatalbframe.place(x=5, y=5)
-  lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
-  sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
-  lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
-  nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
-  lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
-  replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
-  lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
-  signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
-  confirm_chkvar=IntVar()
-  confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
-  confirm_chkbtn.place(x=200, y=215)
-  btn18=Button(account_Frame, width=15, text="Save settings").place(x=25, y=285)
+#   sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
+#   sendatalbframe.place(x=5, y=5)
+#   lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
+#   sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
+#   lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
+#   nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
+#   lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
+#   replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
+#   lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
+#   signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
+#   confirm_chkvar=IntVar()
+#   confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
+#   confirm_chkbtn.place(x=200, y=215)
+#   btn18=Button(account_Frame, width=15, text="Save settings").place(x=25, y=285)
 
-  sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
-  sendatalbframe.place(x=610, y=5)
-  servar=IntVar()
-  SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
-  SMTP_rbtn.place(x=10, y=10)
-  MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
-  MySMTP_rbtn.place(x=10, y=40)
-  em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
-  em_ser_conbtn.place(x=710, y=110)
+#   sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
+#   sendatalbframe.place(x=610, y=5)
+#   servar=IntVar()
+#   SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
+#   SMTP_rbtn.place(x=10, y=10)
+#   MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
+#   MySMTP_rbtn.place(x=10, y=40)
+#   em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
+#   em_ser_conbtn.place(x=710, y=110)
 
 
 
 #email
 
+# def send_mail():
+
+#       sender_email = email_from.get()    
+#       sender_password =email_pswrd.get() 
+
+#       server = smtplib.SMTP('smtp.gmail.com', 587)
+#       print("Login successful1")
+#       server.starttls()
+#       print("Login successful2")
+#       server.login(sender_email, sender_password)
+#       print("Login successful3")
+      
+#       # global email_address, email_subject
+
+#       # email_address = StringVar()  
+#       # email_subject = StringVar()
+#       # msg = MIMEMultipart()
+
+#       # for i in htcodeframe.curselection():
+#       #   # print("hloo",htcodeframe.get(i))
+#       #   ya=htcodeframe.get(i)
+#       #   print(ya,"THIS")
+
+#       #   fo = open(ya, "rb")
+#       #   filecontent = fo.read()
+#       #   encodedcontentnw = base64.b64encode(filecontent) 
+
+
+#       # address_info = email_address.get()
+#       # print(address_info)
+#       # # msg['Subject'] = email_subject.get()
+#       # subject_info = email_subject.get()
+#       # print(subject_info)
+#       carbcopy_info = carcopyem_address.get()
+#       print(carbcopy_info)
+#       # email_content=mframe.get('1.0','end-1c')
+#       # print(email_content)
+      
+      
+#       msg = MIMEMultipart()
+#       msg['Subject'] = email_subject.get() 
+#       mail_content  = mframe.get('1.0','end-1c') 
+#       msg['From'] = email_from.get()
+#       msg['To'] = email_address.get()
+#       # msg.attach(MIMEText(file("text.txt").read()))
+
+#       # msg.attach(MIMEImage(open('images/'+filenamez.split('/')[-1],"rb").read()))
+#       # for i in htcodeframe.curselection():
+      
+#       gettingimg=lstfrm.get()
+#       lst_data = gettingimg[1:-1].split(',')
+#       print(lst_data,"happy")
+#       # print(gettingimg)
+#       msg.attach(MIMEText(mail_content, 'plain'))
+
+#       for i in lst_data:
+#         if len(i.strip()[1:-1])>1:
+    
+#         # print(i[0],"IMAGE")
+#           with open('images/'+ i.strip()[1:-1], "rb") as attachment:
+#               # MIME attachment is a binary file for that content type "application/octet-stream" is used
+#             part = MIMEBase("application", "octet-stream")
+#             part.set_payload(attachment.read())
+#           # encode into base64 
+#             encoders.encode_base64(part) 
+
+#             part.add_header('Content-Disposition', "attachment; filename= %s" % 'images/'+ i.strip()[1:-1]) 
+
+#           # attach the instance 'part' to instance 'message' 
+#             msg.attach(part)
+#       # message_body = email_body.get()
+
+#       server.sendmail(email_from.get(),email_address.get(),msg.as_string())
+#       server.sendmail(email_from.get(), carbcopy_info,msg.as_string())
+
+
+#       dateeem=dt.datetime.now()
+#       emitemid = customertree.item(customertree.focus())["values"][1]
+#       for record in customertree.get_children():
+#         customertree.delete(record)
+#       sqlq = "UPDATE Customer SET emailon=%s WHERE Customerid = %s"
+#       valq = (dateeem,emitemid, )
+#       fbcursor.execute(sqlq, valq,)
+#       fbilldb.commit()
+#       fbcursor.execute('SELECT * FROM Customer;')
+#       Customertotalinput=0
+#       j = 0
+#       for i in fbcursor:
+#        customertree.insert(parent='', index='end', iid=i, text='', values=('', i[0], i[2], i[4], i[8], i[10], i[12], i[22]))
+#       for line in customertree.get_children():
+#         idsave1=customertree.item(line)['values'][9]
+#       Customertotalinput += idsave1
+#       j += 1
+#       # pordtotalrowcol.config(text=Customertotalinput)
+
+#       print("message sent")
+      
+#       # subent.delete(0, END)
+#       # emailtoent.delete(0, END)
+
+#       def empsfile_image(event):
+#               global yawn
+#               for i in htcodeframe.curselection():
+#                 print("hloo",htcodeframe.get(i))
+#                 yawn=htcodeframe.get(i)        
+#                 edit_window_img = Toplevel()
+#                 edit_window_img.title("View Image")
+#                 edit_window_img.geometry("700x500")
+#                 image = Image.open("images/"+yawn)
+#                 resize_image = image.resize((700, 500))
+#                 image = ImageTk.PhotoImage(resize_image)
+#                 psimage = Label(edit_window_img,image=image)
+#                 psimage.photo = image
+#                 psimage.pack()
+
+#       def UploadAction(event=None):
+#           global filenamez
+#           # filename = filedialog.askopenfilename()
+#           # print('Selected:', filename)
+#           # name = askopenfilename(filetypes=[('PDF', '*.pdf',)])
+
+#           filenamez = askopenfilename(filetypes=(("png file ",'.png'),("jpg file", ".jpg"), ('PDF', '.pdf',), ("All files", ".*"),))
+#           shutil.copyfile(filenamez, os.getcwd()+'/images/'+filenamez.split('/')[-1])
+#           htcodeframe.insert(0, filenamez.split('/')[-1])
+
+
+#       # add this
+    
+#       # def upload_file1():
+#       #  global filename,img, b1
+#       #  f_types =[('Png files','.png'),('Jpg Files', '.jpg')]
+#       #  filename = filedialog.askopenfilename(filetypes=f_types)
+#       #  print(filename, 'name')
+#       #  #import pdb; pdb.set_trace()
+#       #  shutil.copyfile(filename, os.getcwd()+'/images/'+filename.split('/')[-1])
+#       #  image = Image.open(filename)
+#       #  resize_image = image.resize((120, 120))
+#       #  img = ImageTk.PhotoImage(resize_image)
+#       #  b1 = Label(expenselabelframe,image=img, height=120, width=120)
+#       #  b1.place(x=450 , y=240)
+
+
+#     ###################DB
+#     #file = shutil.copyfile(filename, os.getcwd()+'/images/'+filename.split('/')[-1])
+#       #query 
+#       #val=filename.split('/')[-1]
+    
+#       def addemail_Customer():
+#         emitid = cuid
+#         sql = "select * from Customer where Customerid = %s"
+#         val = (emitid, )
+#         fbcursor.execute(sql, val)
+#         emailnow = fbcursor.fetchone()
+#         mailDetail=Toplevel()
+#         mailDetail.title("Customer E-Mail")
+#         mailDetail.geometry("1080x550")
+#         mailDetail.resizable(False, False)
+#     # def my_SMTP():
+#     #     if True:
+#     #         em_ser_conbtn.destroy()
+#     #         mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
+#     #         mysmtpservercon.place(x=610, y=110)
+#     #         lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
+#     #         hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
+#     #         lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
+#     #         portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
+#     #         lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
+#     #         unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
+#     #         lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
+#     #         pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
+#     #         ssl_chkvar=IntVar()
+#     #         ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
+#     #         ssl_chkbtn.place(x=50, y=110)
+#     #         em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
+#     #     else:
+#     #         pass
+
+  
+#         style = ttk.Style()
+#         style.theme_use('default')
+#         style.configure('TNotebook.Tab', background="#999999", padding=5)
+#         email_Notebook = ttk.Notebook(mailDetail)
+#         email_Frame = Frame(email_Notebook, height=500, width=1080)
+#         account_Frame = Frame(email_Notebook, height=550, width=1080)
+#         email_Notebook.add(email_Frame, text="E-mail")
+#         email_Notebook.add(account_Frame, text="Account")
+#         email_Notebook.place(x=0, y=0)
+
+#         messagelbframe=LabelFrame(email_Frame,text="Message", height=500, width=730)
+#         messagelbframe.place(x=5, y=5)
+#         global email_address, email_subject, email_from,email_pswrd,carcopyem_address,mframe,htcodeframe,lstfrm,langs
+#         email_address = StringVar() 
+#         email_subject = StringVar()
+#         # email_body = StringVar()
+#         email_from = StringVar()
+#         email_pswrd = StringVar()
+#         carcopyem_address = StringVar()
+#         # content_email = StringVar()
+#         lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
+#         emailtoent=Entry(messagelbframe, width=50,textvariable=email_address)
+#         emailtoent.place(x=120, y=5)
+#         emailtoent.delete(0,'end')
+#         emailtoent.insert(0, emailnow[23])
+#         #email2 = email_address.get()
+#         #print(email2)
+#         sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1, command=send_mail).place(x=600, y=10)#,command=addacnt
+
+#         lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
+#         carcopyent=Entry(messagelbframe, width=50,textvariable=carcopyem_address)
+#         carcopyent.place(x=120, y=32)
+#         # stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
+#         lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
+#         subent=Entry(messagelbframe, width=50, textvariable=email_subject)
+#         subent.place(x=120, y=59)
+#         subjectinsrt='PORD_'+str(emailnow[0])
+#         subent.delete(0,'end')
+#         subent.insert(0, subjectinsrt)
+
+        
+#         style = ttk.Style()
+#         style.theme_use('default')
+#         style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
+#         mess_Notebook = ttk.Notebook(messagelbframe)
+#         emailmessage_Frame =Frame(mess_Notebook, height=350, width=710)
+#         htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
+#         mess_Notebook.add(emailmessage_Frame, text="E-mail message")
+#         # mess_Notebook=Entry(emailmessage_Frame, width=710,height=350, textvariable=email_subject)
+#         # mess_Notebook.place(x=120, y=59)
+#         mess_Notebook.add(htmlsourse_Frame, )#text="Html source code")
+#         mess_Notebook.place(x=5, y=90)
+
+#     # btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+
+    
+#     # btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#     # btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#     # btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#     # btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
+#     # btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
+#     # btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
+#     # btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
+#     # btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
+#     # btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
+#     # btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
+#     # btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
+#     # btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
+    
+#     # btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
+
+
+#     # dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
+#     # dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
+#       mframe=scrolledtext.Text(emailmessage_Frame,  undo=True,width=88, bg="white", height=22)
+#       mframe.place(x=0, y=10)
+#     # mess_Notebook=Entry(emailmessage_Frame, width=710,height=350, textvariable=email_subject)
+#     # mess_Notebook.place(x=120, y=59)
+
+
+#     # btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+
+    
+#     # btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#     # btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#     # btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#     # mframe1=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
+#     # mframe1.place(x=0, y=28)
+#       attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
+#       attachlbframe.place(x=740, y=5)
+#     # langs=[]
+#       lstfrm=StringVar()  
+#       htcodeframe=Listbox(attachlbframe, height=13, width=43,listvariable=lstfrm, bg="white")
+#       htcodeframe.place(x=5, y=5)
+#       htcodeframe.bind('<Double-Button-1>' , empsfile_image)
+
+#       def deslist():
+#           laa=htcodeframe.curselection()
+#           print("hloo",htcodeframe.get(laa))
+#           yawn=htcodeframe.get(laa)        
+#           htcodeframe.delete(ACTIVE)
+
+#       lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
+#       btn17=Button(attachlbframe, width=20, text="Add attachment file...", command=UploadAction).place(x=60, y=260)
+#       btn18=Button(attachlbframe, width=20, text="Remove attachment",command=deslist).place(x=60, y=295)
+#       lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
+#       lbl_tt_info.place(x=740, y=370)
+
+#       ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+      
+#       sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=140, width=600)
+#       sendatalbframe.place(x=5, y=5)
+#       lbl_sendermail=Label(sendatalbframe, text="Company email address").place(x=5, y=10)
+#       sentent=Entry(sendatalbframe, width=40, textvariable=email_from)
+#       sentent.place(x=195, y=10)
+#       #############################################
+#       lbl_senderpswrd=Label(sendatalbframe, text="Email Password").place(x=5, y=40)
+#       pswrdent=Entry(sendatalbframe, width=40, textvariable=email_pswrd,show="*")
+#       pswrdent.place(x=195, y=40)
+#     #############################################
+#     # lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=70)
+#     # nament=Entry(sendatalbframe, width=40).place(x=195, y=70)
+#     # lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=100)
+#     # replyent=Entry(sendatalbframe, width=40).place(x=195, y=100)
+#     # lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=140)
+#     # signent=Entry(sendatalbframe,width=50).place(x=100, y=140,height=75)
+#     # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#     # lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=95)
+#     # signent=Entry(sendatalbframe,width=50).place(x=195, y=70,height=95)
+#     # confirm_chkvar=IntVar()
+#     # confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
+#     # confirm_chkbtn.place(x=200, y=215)
+#     # btn18=Button(account_Frame, width=15, text="Save settings",command=savesettings).place(x=25, y=285)
+
+#     # sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
+#     # sendatalbframe.place(x=610, y=5)
+#     # servar=IntVar()
+#     # SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
+#     # SMTP_rbtn.place(x=10, y=10)
+#     # MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
+#     # MySMTP_rbtn.place(x=10, y=40)
+#     # em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
+#     # em_ser_conbtn.place(x=710, y=110)
+
+
+
+
+
+
+
 def send_mail(file=None):
 
-  sender_email = email_from.get()    
-  sender_password =email_pswrd.get() 
+  sender_email = email_from.get()   
+  sender_password = email_pswrd.get() 
 
   server = smtplib.SMTP('smtp.gmail.com', 587)
   print("Login successful1")
@@ -2200,9 +2530,10 @@ def send_mail(file=None):
   # print(gettingimg)
   
   msg.attach(MIMEText(mail_content, 'plain'))
-  
+
   for i in lst_data:
     if len(i.strip()[1:-1])>1:
+        
     # print(i[0],"IMAGE")
       with open('images/'+ i.strip()[1:-1], "rb") as attachment:
           # MIME attachment is a binary file for that content type "application/octet-stream" is used
@@ -2210,12 +2541,12 @@ def send_mail(file=None):
         part.set_payload(attachment.read())
       # encode into base64 
         encoders.encode_base64(part) 
-  
+
         part.add_header('Content-Disposition', "attachment; filename= %s" % 'images/'+ i.strip()[1:-1]) 
 
       # attach the instance 'part' to instance 'message' 
         msg.attach(part)
-    # message_body = email_body.get()
+   # message_body = email_body.get()
 
   server.sendmail(email_from.get(),email_address.get(),msg.as_string())
   server.sendmail(email_from.get(), carbcopy_info,msg.as_string())
@@ -2225,20 +2556,20 @@ def send_mail(file=None):
   emitemid = customertree.item(customertree.focus())["values"][1]
   for record in customertree.get_children():
     customertree.delete(record)
-  sqlq = "UPDATE Orders SET emailed_on=%s WHERE orderid = %s"
+  sqlq = "UPDATE Customer SET emailon=%s WHERE cuid = %s"
   valq = (dateeem,emitemid, )
   fbcursor.execute(sqlq, valq,)
   fbilldb.commit()
-  fbcursor.execute('SELECT * FROM Orders;')
-  ordertotalinput=0
+  fbcursor.execute('SELECT * FROM Customer;')
+  Customertotalinput=0
   j = 0
   for i in fbcursor:
-   customertree.insert(parent='', index='end', iid=i, text='',values=('', i[0], i[2], i[4], i[8], i[10], i[12], i[22]))
+   customertree.insert(parent='', index='end', iid=i, text='', values=(' ',i[0], i[2], i[3], i[4],i[5], i[6], i[7], i[8], i[9], i[10],i[11]))
    for line in customertree.get_children():
     idsave1=customertree.item(line)['values'][9]
-   ordertotalinput += idsave1
+  #  Customertotalinput += idsave1
    j += 1
-  # ordtotalrowcol.config(text=ordertotalinput)
+  # pordtotalrowcol.config(text=Customertotalinput)
 
   print("message sent")
   
@@ -2271,36 +2602,17 @@ def UploadAction(event=None):
   htcodeframe.insert(0, filenamez.split('/')[-1])
 
 
-   # add this
- 
-  # def upload_file1():
-  #  global filename,img, b1
-  #  f_types =[('Png files','.png'),('Jpg Files', '.jpg')]
-  #  filename = filedialog.askopenfilename(filetypes=f_types)
-  #  print(filename, 'name')
-  #  #import pdb; pdb.set_trace()
-  #  shutil.copyfile(filename, os.getcwd()+'/images/'+filename.split('/')[-1])
-  #  image = Image.open(filename)
-  #  resize_image = image.resize((120, 120))
-  #  img = ImageTk.PhotoImage(resize_image)
-  #  b1 = Label(expenselabelframe,image=img, height=120, width=120)
-  #  b1.place(x=450 , y=240)
 
 
-###################DB
- #file = shutil.copyfile(filename, os.getcwd()+'/images/'+filename.split('/')[-1])
-  #query 
-  #val=filename.split('/')[-1]
-    
-def email_order():
+def email_Customer():
  try:
   emitid = customertree.item(customertree.focus())["values"][1]
-  sql = "select * from Orders where orderid = %s"
+  sql = "select * from Customer where Customerid = %s"
   val = (emitid, )
   fbcursor.execute(sql, val)
   emailnow = fbcursor.fetchone()
   mailDetail=Toplevel()
-  mailDetail.title("Order E-Mail")
+  mailDetail.title("Customer E-Mail")
   mailDetail.geometry("1080x550")
   mailDetail.resizable(False, False)
   # def my_SMTP():
@@ -2348,7 +2660,7 @@ def email_order():
   emailtoent=Entry(messagelbframe, width=50,textvariable=email_address)
   emailtoent.place(x=120, y=5)
   emailtoent.delete(0,'end')
-  emailtoent.insert(0, emailnow[19])
+  emailtoent.insert(0, emailnow[23])
   #email2 = email_address.get()
   #print(email2)
   sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1, command=send_mail).place(x=600, y=10)#,command=addacnt
@@ -2360,7 +2672,7 @@ def email_order():
   lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
   subent=Entry(messagelbframe, width=50, textvariable=email_subject)
   subent.place(x=120, y=59)
-  subjectinsrt='ORD_'+str(emailnow[0])
+  subjectinsrt='PORD_'+str(emailnow[0])
   subent.delete(0,'end')
   subent.insert(0, subjectinsrt)
 
@@ -2473,7 +2785,6 @@ def email_order():
    except:
      pass
      messagebox.showerror('F-Billing Revolution', 'You have to select a record.')
-
 
 
 
@@ -2953,7 +3264,7 @@ pn = Canvas(midFrame, width=1, height=65, bg="#b3b3b3", bd=0)
 pn.pack(side="left", padx=5)
 
 emailinviceIcon = ImageTk.PhotoImage(Image.open("images/gmail.png"))
-emailinviceLabel = Button(midFrame,compound="top",command=emailinvoice_customer, text="E-mail\nInvoice List",relief=RAISED,               image=emailinviceIcon, font=("arial", 8),bg="#f8f8f2", fg="black", height=55, bd=1, width=55)
+emailinviceLabel = Button(midFrame,compound="top", text="E-mail\nInvoice List",relief=RAISED, command=email_Customer, image=emailinviceIcon, font=("arial", 8),bg="#f8f8f2", fg="black", height=55, bd=1, width=55)
 emailinviceLabel.pack(side="left")
 
 smsIcon = ImageTk.PhotoImage(Image.open("images/text-message.png"))
@@ -3249,214 +3560,214 @@ def print_invoice_recurring():
 
 #email
       
-def email_invoice_recurring():
-  mailDetail=Toplevel()
-  mailDetail.title("Invoice E-Mail")
-  mailDetail.geometry("1080x550")
-  mailDetail.resizable(False, False)
-  def my_SMTP():
-      if True:
-          em_ser_conbtn.destroy()
-          mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
-          mysmtpservercon.place(x=610, y=110)
-          lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
-          hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
-          lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
-          portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
-          lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
-          unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
-          lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
-          pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
-          ssl_chkvar=IntVar()
-          ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
-          ssl_chkbtn.place(x=50, y=110)
-          em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
-      else:
-          pass
+# def email_invoice_recurring():
+#   mailDetail=Toplevel()
+#   mailDetail.title("Invoice E-Mail")
+#   mailDetail.geometry("1080x550")
+#   mailDetail.resizable(False, False)
+#   def my_SMTP():
+#       if True:
+#           em_ser_conbtn.destroy()
+#           mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
+#           mysmtpservercon.place(x=610, y=110)
+#           lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
+#           hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
+#           lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
+#           portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
+#           lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
+#           unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
+#           lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
+#           pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
+#           ssl_chkvar=IntVar()
+#           ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
+#           ssl_chkbtn.place(x=50, y=110)
+#           em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
+#       else:
+#           pass
     
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", padding=5)
-  email_Notebook = ttk.Notebook(mailDetail)
-  email_Frame = Frame(email_Notebook, height=500, width=1080)
-  account_Frame = Frame(email_Notebook, height=550, width=1080)
-  email_Notebook.add(email_Frame, text="E-mail")
-  email_Notebook.add(account_Frame, text="Account")
-  email_Notebook.place(x=0, y=0)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", padding=5)
+#   email_Notebook = ttk.Notebook(mailDetail)
+#   email_Frame = Frame(email_Notebook, height=500, width=1080)
+#   account_Frame = Frame(email_Notebook, height=550, width=1080)
+#   email_Notebook.add(email_Frame, text="E-mail")
+#   email_Notebook.add(account_Frame, text="Account")
+#   email_Notebook.place(x=0, y=0)
 
-  messagelbframe=LabelFrame(email_Frame,text="Message", height=500, width=730)
-  messagelbframe.place(x=5, y=5)
-  lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
-  emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
-  sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1,command=addacnt).place(x=600, y=10)
-  lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
-  carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
-  stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
-  lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
-  subent=Entry(messagelbframe, width=50).place(x=120, y=59)
-
-  
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
-  mess_Notebook = ttk.Notebook(messagelbframe)
-  emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
-  htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
-  mess_Notebook.add(emailmessage_Frame, text="E-mail message")
-  mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
-  mess_Notebook.place(x=5, y=90)
-
-  btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   messagelbframe=LabelFrame(email_Frame,text="Message", height=500, width=730)
+#   messagelbframe.place(x=5, y=5)
+#   lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
+#   emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
+#   sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1,command=addacnt).place(x=600, y=10)
+#   lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
+#   carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
+#   stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
+#   lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
+#   subent=Entry(messagelbframe, width=50).place(x=120, y=59)
 
   
-  btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
-  btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
-  btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
-  btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
-  btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
-  btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
-  btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
-  btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
-  btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
-  
-  btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
+#   mess_Notebook = ttk.Notebook(messagelbframe)
+#   emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
+#   htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
+#   mess_Notebook.add(emailmessage_Frame, text="E-mail message")
+#   mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
+#   mess_Notebook.place(x=5, y=90)
 
-
-  dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
-  dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
-  mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-
-
-
-  btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
 
   
-  btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-
-  attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
-  attachlbframe.place(x=740, y=5)
-  htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
-  lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
-  btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
-  btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
-  lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
-  lbl_tt_info.place(x=740, y=370)
-
-  ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+#   btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
+#   btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
+#   btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
+#   btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
+#   btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
+#   btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
+#   btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
+#   btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
+#   btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
   
-  sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
-  sendatalbframe.place(x=5, y=5)
-  lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
-  sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
-  lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
-  nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
-  lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
-  replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
-  lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
-  signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
-  confirm_chkvar=IntVar()
-  confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
-  confirm_chkbtn.place(x=200, y=215)
-  btn18=Button(account_Frame, width=15, text="Save settings",command=savesettings).place(x=25, y=285)
-
-  sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
-  sendatalbframe.place(x=610, y=5)
-  servar=IntVar()
-  SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
-  SMTP_rbtn.place(x=10, y=10)
-  MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
-  MySMTP_rbtn.place(x=10, y=40)
-  em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
-  em_ser_conbtn.place(x=710, y=110)
+#   btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
 
 
-def addacnt():  
-   messagebox.showinfo("F-Billing Revolution 2022", "No sender email address.\nPlease fill Your company email address textfield under the Account tab.")
-
-def savesettings():  
-   messagebox.showinfo("F-Billing Revolution 2022", "Your E-mail configuration settings has been saved.")
+#   dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
+#   dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
+#   mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
 
 
 
-#print preview invoice-recurring
-# def printpreview():
-  #messagebox.showerror("F-Billing Revolution","Customer is required,please select customer for this order before printing.")
-  # win= Tk()
-#Set the Geometry
-  # win.geometry("750x450")
-  # win.title("F-Billing Revolution 2022 - Invoice")
-  # text= Text(win,width= 80,height=30)
-  # text.pack(pady=20)
+#   btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+
+  
+#   btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+
+#   attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
+#   attachlbframe.place(x=740, y=5)
+#   htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
+#   lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
+#   btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
+#   btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
+#   lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
+#   lbl_tt_info.place(x=740, y=370)
+
+#   ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+  
+#   sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
+#   sendatalbframe.place(x=5, y=5)
+#   lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
+#   sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
+#   lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
+#   nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
+#   lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
+#   replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
+#   lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
+#   signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
+#   confirm_chkvar=IntVar()
+#   confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
+#   confirm_chkbtn.place(x=200, y=215)
+#   btn18=Button(account_Frame, width=15, text="Save settings",command=savesettings).place(x=25, y=285)
+
+#   sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
+#   sendatalbframe.place(x=610, y=5)
+#   servar=IntVar()
+#   SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
+#   SMTP_rbtn.place(x=10, y=10)
+#   MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
+#   MySMTP_rbtn.place(x=10, y=40)
+#   em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
+#   em_ser_conbtn.place(x=710, y=110)
 
 
-def printpreviewinvoice_recurring():
-  preview = Toplevel()
-  preview.title("F-Billing Revolution Invoice Report ")
-  p2= PhotoImage(file = "images/fbicon.png")
-  preview.iconphoto(False, p1)
-  preview.geometry("1800x1800+0+0")
-  canvas = Canvas(preview)
-  canvas.place(relwidth=1, relheight=1,x=250,y=10) 
-  paperheigth = preview.winfo_fpixels('1m') * 297
-  paperwidth = preview.winfo_fpixels('1m') * 210
-  canvas.create_rectangle(20, 20, 20+paperwidth, 20+paperheigth, outline='', fill='white')  
+# def addacnt():  
+#    messagebox.showinfo("F-Billing Revolution 2022", "No sender email address.\nPlease fill Your company email address textfield under the Account tab.")
+
+# def savesettings():  
+#    messagebox.showinfo("F-Billing Revolution 2022", "Your E-mail configuration settings has been saved.")
 
 
 
-#convert to invoice
-def convert():
-  if messagebox.askyesno("Make invoice from Orders", "Are you sure to make invoice from this Orders ") == True:
-        messagebox.askyesno("Make invoice from Estimate", "Invoice Creation was Successfull.\n New Invoice is \n Would you like to open this invoice ")
-  else:
-      messagebox.destroy()
+# #print preview invoice-recurring
+# # def printpreview():
+#   #messagebox.showerror("F-Billing Revolution","Customer is required,please select customer for this order before printing.")
+#   # win= Tk()
+# #Set the Geometry
+#   # win.geometry("750x450")
+#   # win.title("F-Billing Revolution 2022 - Invoice")
+#   # text= Text(win,width= 80,height=30)
+#   # text.pack(pady=20)
+
+
+# def printpreviewinvoice_recurring():
+#   preview = Toplevel()
+#   preview.title("F-Billing Revolution Invoice Report ")
+#   p2= PhotoImage(file = "images/fbicon.png")
+#   preview.iconphoto(False, p1)
+#   preview.geometry("1800x1800+0+0")
+#   canvas = Canvas(preview)
+#   canvas.place(relwidth=1, relheight=1,x=250,y=10) 
+#   paperheigth = preview.winfo_fpixels('1m') * 297
+#   paperwidth = preview.winfo_fpixels('1m') * 210
+#   canvas.create_rectangle(20, 20, 20+paperwidth, 20+paperheigth, outline='', fill='white')  
+
+
+
+# #convert to invoice
+# def convert():
+#   if messagebox.askyesno("Make invoice from Orders", "Are you sure to make invoice from this Orders ") == True:
+#         messagebox.askyesno("Make invoice from Estimate", "Invoice Creation was Successfull.\n New Invoice is \n Would you like to open this invoice ")
+#   else:
+#       messagebox.destroy()
   
 
-#search in invoice 
-def search_invoice_recurring():  
-    top = Toplevel()     
-    top.title("Find Text")   
-    top.geometry("600x250+390+250")
-    findwhat1=Label(top,text="Find What:",pady=5,padx=10).place(x=5,y=20)
-    n = StringVar()
-    findwhat = ttk.Combobox(top, width = 40, textvariable = n ).place(x=90,y=25)
+# #search in invoice 
+# def search_invoice_recurring():  
+#     top = Toplevel()     
+#     top.title("Find Text")   
+#     top.geometry("600x250+390+250")
+#     findwhat1=Label(top,text="Find What:",pady=5,padx=10).place(x=5,y=20)
+#     n = StringVar()
+#     findwhat = ttk.Combobox(top, width = 40, textvariable = n ).place(x=90,y=25)
    
-    findin1=Label(top,text="Find in:",pady=5,padx=10).place(x=5,y=47)
-    n = StringVar()
-    findIN = ttk.Combobox(top, width = 30, textvariable = n )
-    findIN['values'] = ('Product/Service id', ' Category', ' Active',' name',' stock',' location', ' image',' <<All>>')                       
-    findIN.place(x=90,y=54)
-    findIN.current(0)
+#     findin1=Label(top,text="Find in:",pady=5,padx=10).place(x=5,y=47)
+#     n = StringVar()
+#     findIN = ttk.Combobox(top, width = 30, textvariable = n )
+#     findIN['values'] = ('Product/Service id', ' Category', ' Active',' name',' stock',' location', ' image',' <<All>>')                       
+#     findIN.place(x=90,y=54)
+#     findIN.current(0)
 
-    findButton = Button(top, text ="Find next",width=10).place(x=480,y=22)
-    closeButton = Button(top,text ="Close",width=10).place(x=480,y=52)
+#     findButton = Button(top, text ="Find next",width=10).place(x=480,y=22)
+#     closeButton = Button(top,text ="Close",width=10).place(x=480,y=52)
     
-    match1=Label(top,text="Match:",pady=5,padx=10).place(x=5,y=74)
-    n = StringVar()
-    match = ttk.Combobox(top, width = 23, textvariable = n )   
-    match['values'] = ('From Any part',' Whole Field',' From the beginning of the field')                                    
-    match.place(x=90,y=83)
-    match.current(0)
+#     match1=Label(top,text="Match:",pady=5,padx=10).place(x=5,y=74)
+#     n = StringVar()
+#     match = ttk.Combobox(top, width = 23, textvariable = n )   
+#     match['values'] = ('From Any part',' Whole Field',' From the beginning of the field')                                    
+#     match.place(x=90,y=83)
+#     match.current(0)
 
-    search1=Label(top,text="Search:",pady=5,padx=10).place(x=5,y=102)
-    n = StringVar()
-    search = ttk.Combobox(top, width = 23, textvariable = n )
-    search['values'] = ('All', 'up',' Down')
-    search.place(x=90,y=112)
-    search.current(0)
-    checkvarStatus4=IntVar()  
-    Button4 = Checkbutton(top,variable = checkvarStatus4,text="Match Case",onvalue =0 ,offvalue = 1,height=3,width = 15)
-    Button4.place(x=90,y=141)
-    checkvarStatus5=IntVar()   
-    Button5 = Checkbutton(top,variable = checkvarStatus5,text="Match Format",onvalue =0 ,offvalue = 1,height=3,width = 15)
-    Button5.place(x=300,y=141)
+#     search1=Label(top,text="Search:",pady=5,padx=10).place(x=5,y=102)
+#     n = StringVar()
+#     search = ttk.Combobox(top, width = 23, textvariable = n )
+#     search['values'] = ('All', 'up',' Down')
+#     search.place(x=90,y=112)
+#     search.current(0)
+#     checkvarStatus4=IntVar()  
+#     Button4 = Checkbutton(top,variable = checkvarStatus4,text="Match Case",onvalue =0 ,offvalue = 1,height=3,width = 15)
+#     Button4.place(x=90,y=141)
+#     checkvarStatus5=IntVar()   
+#     Button5 = Checkbutton(top,variable = checkvarStatus5,text="Match Format",onvalue =0 ,offvalue = 1,height=3,width = 15)
+#     Button5.place(x=300,y=141)
 
 #-------------------------view/edit invoice---------------------------
 
@@ -3985,7 +4296,7 @@ def view_invoice_recurring():
   w = Canvas(firFrame, width=1, height=65, bg="#b3b3b3", bd=0)
   w.pack(side="left", padx=5)
 
-  prev= Button(firFrame,compound="top", text="Preview\nInvoice",relief=RAISED, image=photo4,bg="#f5f3f2", fg="black", height=55, bd=1, width=55,command=printpreviewinvoice_recurring)
+  prev= Button(firFrame,compound="top", text="Preview\nInvoice",relief=RAISED, image=photo4,bg="#f5f3f2", fg="black", height=55, bd=1, width=55)
   prev.pack(side="left", pady=3, ipadx=4)
 
   prin= Button(firFrame,compound="top", text="Print \nInvoice",relief=RAISED, image=photo5,bg="#f5f3f2", fg="black", height=55, bd=1, width=55,command=print_invoice_recurring)
@@ -3994,7 +4305,7 @@ def view_invoice_recurring():
   w = Canvas(firFrame, width=1, height=65, bg="#b3b3b3", bd=0)
   w.pack(side="left", padx=5)
 
-  mail= Button(firFrame,compound="top", text="Email\nInvoice",relief=RAISED, image=photo6,bg="#f5f3f2", fg="black", height=55, bd=1, width=55,command=email_invoice_recurring)
+  mail= Button(firFrame,compound="top", text="Email\nInvoice",relief=RAISED, image=photo6,bg="#f5f3f2", fg="black", height=55, bd=1, width=55)
   mail.pack(side="left", pady=3, ipadx=4)
 
   sms1= Button(firFrame,compound="top", text="Send SMS\nnotification",relief=RAISED, image=photo10,bg="#f5f3f2", fg="black", height=55, bd=1, width=55,command=sms_recurring)
@@ -4219,7 +4530,7 @@ orderLabel.pack(side="left")
 w = Canvas(midFrame, width=1, height=65, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-previewLabel = Button(midFrame,compound="top", text="Print Preview",relief=RAISED, image=photo4,bg="#f8f8f2", fg="black", height=55, bd=1, width=75,command=printpreviewinvoice_recurring)
+previewLabel = Button(midFrame,compound="top", text="Print Preview",relief=RAISED, image=photo4,bg="#f8f8f2", fg="black", height=55, bd=1, width=75)
 previewLabel.pack(side="left")
 
 purchaseLabel = Button(midFrame,compound="top", text="Print Invoice",relief=RAISED, image=photo5,bg="#f8f8f2", fg="black", height=55, bd=1, width=75,command=print_invoice_recurring)
@@ -4228,14 +4539,14 @@ purchaseLabel.pack(side="left")
 w = Canvas(midFrame, width=1, height=55, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-expenseLabel = Button(midFrame,compound="top", text=" E-mail \nInvoice",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=75,command=email_invoice_recurring)
+expenseLabel = Button(midFrame,compound="top", text=" E-mail \nInvoice",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=75)
 expenseLabel.pack(side="left")
 
 
 w = Canvas(midFrame, width=1, height=55, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-productLabel = Button(midFrame,compound="top", text="Search in\nInvoices",relief=RAISED, image=photo7,bg="#f8f8f2", fg="black", height=55, bd=1, width=75,command=search_invoice_recurring)
+productLabel = Button(midFrame,compound="top", text="Search in\nInvoices",relief=RAISED, image=photo7,bg="#f8f8f2", fg="black", height=55, bd=1, width=75)
 productLabel.pack(side="left")
 
 w = Canvas(midFrame, width=1, height=55, bg="#b3b3b3", bd=0)
@@ -5625,123 +5936,123 @@ def printsele():
 
 #email
       
-def emailorder():
-  mailDetail=Toplevel()
-  mailDetail.title("E-Mail Invoice List")
-  p2 = PhotoImage(file = "images/fbicon.png")
-  mailDetail.iconphoto(False, p2)
-  mailDetail.geometry("1030x550+150+120")
+# def emailorder():
+#   mailDetail=Toplevel()
+#   mailDetail.title("E-Mail Invoice List")
+#   p2 = PhotoImage(file = "images/fbicon.png")
+#   mailDetail.iconphoto(False, p2)
+#   mailDetail.geometry("1030x550+150+120")
  
-  def my_SMTP():
-      if True:
-          em_ser_conbtn.destroy()
-          mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
-          mysmtpservercon.place(x=610, y=110)
-          lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
-          hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
-          lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
-          portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
-          lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
-          unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
-          lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
-          pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
-          ssl_chkvar=IntVar()
-          ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
-          ssl_chkbtn.place(x=50, y=110)
-          em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
-      else:
-          pass
+#   def my_SMTP():
+#       if True:
+#           em_ser_conbtn.destroy()
+#           mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
+#           mysmtpservercon.place(x=610, y=110)
+#           lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
+#           hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
+#           lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
+#           portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
+#           lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
+#           unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
+#           lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
+#           pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
+#           ssl_chkvar=IntVar()
+#           ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
+#           ssl_chkbtn.place(x=50, y=110)
+#           em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
+#       else:
+#           pass
     
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", padding=5)
-  email_Notebook = ttk.Notebook(mailDetail)
-  email_Frame = Frame(email_Notebook, height=500, width=1080)
-  account_Frame = Frame(email_Notebook, height=550, width=1080)
-  email_Notebook.add(email_Frame, text="E-mail")
-  email_Notebook.add(account_Frame, text="Account")
-  email_Notebook.place(x=0, y=0)
-  messagelbframe=LabelFrame(email_Frame,text="Message", height=495, width=730)
-  messagelbframe.place(x=5, y=5)
-  lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
-  emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
-  sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1).place(x=600, y=10)
-  lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
-  carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
-  stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
-  lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
-  subent=Entry(messagelbframe, width=50).place(x=120, y=59)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", padding=5)
+#   email_Notebook = ttk.Notebook(mailDetail)
+#   email_Frame = Frame(email_Notebook, height=500, width=1080)
+#   account_Frame = Frame(email_Notebook, height=550, width=1080)
+#   email_Notebook.add(email_Frame, text="E-mail")
+#   email_Notebook.add(account_Frame, text="Account")
+#   email_Notebook.place(x=0, y=0)
+#   messagelbframe=LabelFrame(email_Frame,text="Message", height=495, width=730)
+#   messagelbframe.place(x=5, y=5)
+#   lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
+#   emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
+#   sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1).place(x=600, y=10)
+#   lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
+#   carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
+#   stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
+#   lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
+#   subent=Entry(messagelbframe, width=50).place(x=120, y=59)
 
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
-  mess_Notebook = ttk.Notebook(messagelbframe)
-  emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
-  htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
-  mess_Notebook.add(emailmessage_Frame, text="E-mail message")
-  mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
-  mess_Notebook.place(x=5, y=90)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
+#   mess_Notebook = ttk.Notebook(messagelbframe)
+#   emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
+#   htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
+#   mess_Notebook.add(emailmessage_Frame, text="E-mail message")
+#   mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
+#   mess_Notebook.place(x=5, y=90)
 
-  btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)  
-  btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
-  btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
-  btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
-  btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
-  btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
-  btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
-  btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
-  btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
-  btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
-  btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
+#   btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)  
+#   btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
+#   btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
+#   btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
+#   btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
+#   btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
+#   btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
+#   btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
+#   btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
+#   btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
+#   btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
 
-  dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
-  dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
-  mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-  btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
-  btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-  attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
-  attachlbframe.place(x=740, y=5)
-  htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
-  lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
-  btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
-  btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
-  lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
-  lbl_tt_info.place(x=740, y=370)
+#   dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
+#   dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
+#   mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+#   btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+#   attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
+#   attachlbframe.place(x=740, y=5)
+#   htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
+#   lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
+#   btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
+#   btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
+#   lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
+#   lbl_tt_info.place(x=740, y=370)
 
-  ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+#   ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
   
-  sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
-  sendatalbframe.place(x=5, y=5)
-  lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
-  sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
-  lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
-  nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
-  lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
-  replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
-  lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
-  signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
-  confirm_chkvar=IntVar()
-  confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
-  confirm_chkbtn.place(x=200, y=215)
-  btn18=Button(account_Frame, width=15, text="Save settings").place(x=25, y=285)
+#   sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
+#   sendatalbframe.place(x=5, y=5)
+#   lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
+#   sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
+#   lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
+#   nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
+#   lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
+#   replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
+#   lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
+#   signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
+#   confirm_chkvar=IntVar()
+#   confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
+#   confirm_chkbtn.place(x=200, y=215)
+#   btn18=Button(account_Frame, width=15, text="Save settings").place(x=25, y=285)
 
-  sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
-  sendatalbframe.place(x=610, y=5)
-  servar=IntVar()
-  SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
-  SMTP_rbtn.place(x=10, y=10)
-  MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
-  MySMTP_rbtn.place(x=10, y=40)
-  em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
-  em_ser_conbtn.place(x=710, y=110)
+#   sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
+#   sendatalbframe.place(x=610, y=5)
+#   servar=IntVar()
+#   SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
+#   SMTP_rbtn.place(x=10, y=10)
+#   MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
+#   MySMTP_rbtn.place(x=10, y=40)
+#   em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
+#   em_ser_conbtn.place(x=710, y=110)
 
 
 
@@ -5945,7 +6256,7 @@ purchaseLabel.pack(side="left")
 w = Canvas(midFrame, width=1, height=55, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-expenseLabel = Button(midFrame,compound="top", text=" E-mail \nInvoice",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=emailord)
+expenseLabel = Button(midFrame,compound="top", text=" E-mail \nInvoice",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55)
 expenseLabel.pack(side="left")
 
 smsLabel = Button(midFrame,compound="top", text="Send SMS\nnotification",relief=RAISED, image=photo10,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=sms)
@@ -6901,133 +7212,133 @@ def printsele():
 
 #email
       
-def email_invoice_recurring():
-  mailDetail=Toplevel()
-  mailDetail.title("Invoice E-Mail")
-  mailDetail.geometry("1080x550")
-  mailDetail.resizable(False, False)
-  def my_SMTP():
-      if True:
-          em_ser_conbtn.destroy()
-          mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
-          mysmtpservercon.place(x=610, y=110)
-          lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
-          hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
-          lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
-          portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
-          lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
-          unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
-          lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
-          pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
-          ssl_chkvar=IntVar()
-          ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
-          ssl_chkbtn.place(x=50, y=110)
-          em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
-      else:
-          pass
+# def email_invoice_recurring():
+#   mailDetail=Toplevel()
+#   mailDetail.title("Invoice E-Mail")
+#   mailDetail.geometry("1080x550")
+#   mailDetail.resizable(False, False)
+#   def my_SMTP():
+#       if True:
+#           em_ser_conbtn.destroy()
+#           mysmtpservercon=LabelFrame(account_Frame,text="SMTP server connection(ask your ISP for your SMTP settings)", height=165, width=380)
+#           mysmtpservercon.place(x=610, y=110)
+#           lbl_hostn=Label(mysmtpservercon, text="Hostname").place(x=5, y=10)
+#           hostnent=Entry(mysmtpservercon, width=30).place(x=80, y=10)
+#           lbl_portn=Label(mysmtpservercon, text="Port").place(x=5, y=35)
+#           portent=Entry(mysmtpservercon, width=30).place(x=80, y=35)
+#           lbl_usn=Label(mysmtpservercon, text="Username").place(x=5, y=60)
+#           unament=Entry(mysmtpservercon, width=30).place(x=80, y=60)
+#           lbl_pasn=Label(mysmtpservercon, text="Password").place(x=5, y=85)
+#           pwdent=Entry(mysmtpservercon, width=30).place(x=80, y=85)
+#           ssl_chkvar=IntVar()
+#           ssl_chkbtn=Checkbutton(mysmtpservercon, variable=ssl_chkvar, text="This server requires a secure connection(SSL)", onvalue=1, offvalue=0)
+#           ssl_chkbtn.place(x=50, y=110)
+#           em_ser_conbtn1=Button(account_Frame, text="Test E-mail Server Connection").place(x=610, y=285)
+#       else:
+#           pass
     
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", padding=5)
-  email_Notebook = ttk.Notebook(mailDetail)
-  email_Frame = Frame(email_Notebook, height=500, width=1080)
-  account_Frame = Frame(email_Notebook, height=550, width=1080)
-  email_Notebook.add(email_Frame, text="E-mail")
-  email_Notebook.add(account_Frame, text="Account")
-  email_Notebook.place(x=0, y=0)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", padding=5)
+#   email_Notebook = ttk.Notebook(mailDetail)
+#   email_Frame = Frame(email_Notebook, height=500, width=1080)
+#   account_Frame = Frame(email_Notebook, height=550, width=1080)
+#   email_Notebook.add(email_Frame, text="E-mail")
+#   email_Notebook.add(account_Frame, text="Account")
+#   email_Notebook.place(x=0, y=0)
 
-  messagelbframe=LabelFrame(email_Frame,text="Message", height=500, width=730)
-  messagelbframe.place(x=5, y=5)
-  lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
-  emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
-  sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1,command=addacnt).place(x=600, y=10)
-  lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
-  carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
-  stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
-  lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
-  subent=Entry(messagelbframe, width=50).place(x=120, y=59)
-
-  
-  style = ttk.Style()
-  style.theme_use('default')
-  style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
-  mess_Notebook = ttk.Notebook(messagelbframe)
-  emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
-  htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
-  mess_Notebook.add(emailmessage_Frame, text="E-mail message")
-  mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
-  mess_Notebook.place(x=5, y=90)
-
-  btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   messagelbframe=LabelFrame(email_Frame,text="Message", height=500, width=730)
+#   messagelbframe.place(x=5, y=5)
+#   lbl_emailtoaddr=Label(messagelbframe, text="Email to address").place(x=5, y=5)
+#   emailtoent=Entry(messagelbframe, width=50).place(x=120, y=5)
+#   sendemail_btn=Button(messagelbframe, text="Send Email", width=10, height=1,command=addacnt).place(x=600, y=10)
+#   lbl_carcopyto=Label(messagelbframe, text="Carbon copy to").place(x=5, y=32)
+#   carcopyent=Entry(messagelbframe, width=50).place(x=120, y=32)
+#   stopemail_btn=Button(messagelbframe, text="Stop sending", width=10, height=1).place(x=600, y=40)
+#   lbl_subject=Label(messagelbframe, text="Subject").place(x=5, y=59)
+#   subent=Entry(messagelbframe, width=50).place(x=120, y=59)
 
   
-  btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
-  btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
-  btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
-  btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
-  btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
-  btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
-  btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
-  btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
-  btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
-  
-  btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
+#   style = ttk.Style()
+#   style.theme_use('default')
+#   style.configure('TNotebook.Tab', background="#999999", width=20, padding=5)
+#   mess_Notebook = ttk.Notebook(messagelbframe)
+#   emailmessage_Frame = Frame(mess_Notebook, height=350, width=710)
+#   htmlsourse_Frame = Frame(mess_Notebook, height=350, width=710)
+#   mess_Notebook.add(emailmessage_Frame, text="E-mail message")
+#   mess_Notebook.add(htmlsourse_Frame, text="Html sourse code")
+#   mess_Notebook.place(x=5, y=90)
 
-
-  dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
-  dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
-  mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-
-
-
-  btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+#   btn1=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
 
   
-  btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
-  btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
-  btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
-  mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
-  mframe.place(x=0, y=28)
-
-  attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
-  attachlbframe.place(x=740, y=5)
-  htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
-  lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
-  btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
-  btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
-  lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
-  lbl_tt_info.place(x=740, y=370)
-
-  ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+#   btn2=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   btn5=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=undo).place(x=140, y=1)
+#   btn6=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=redo).place(x=175, y=1)
+#   btn7=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=bold).place(x=210, y=1)
+#   btn8=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=italics).place(x=245, y=1)
+#   btn9=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=underline).place(x=280, y=1)
+#   btn10=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=left).place(x=315, y=1)
+#   btn11=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=right).place(x=350, y=1)
+#   btn12=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=center).place(x=385, y=1)
+#   btn13=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=hyperlink).place(x=420, y=1)
   
-  sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
-  sendatalbframe.place(x=5, y=5)
-  lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
-  sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
-  lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
-  nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
-  lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
-  replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
-  lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
-  signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
-  confirm_chkvar=IntVar()
-  confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
-  confirm_chkbtn.place(x=200, y=215)
-  btn18=Button(account_Frame, width=15, text="Save settings",command=savesettings).place(x=25, y=285)
+#   btn14=Button(emailmessage_Frame,width=31,height=23,compound = LEFT,image=remove).place(x=455, y=1)
 
-  sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
-  sendatalbframe.place(x=610, y=5)
-  servar=IntVar()
-  SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
-  SMTP_rbtn.place(x=10, y=10)
-  MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
-  MySMTP_rbtn.place(x=10, y=40)
-  em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
-  em_ser_conbtn.place(x=710, y=110)
+
+#   dropcomp = ttk.Combobox(emailmessage_Frame, width=12, height=3).place(x=500, y=5)
+#   dropcompo = ttk.Combobox(emailmessage_Frame, width=6, height=3).place(x=600, y=5)
+#   mframe=Frame(emailmessage_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+
+
+
+#   btn1=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=selectall).place(x=0, y=1)
+
+  
+#   btn2=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=cut).place(x=36, y=1)
+#   btn3=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=copy).place(x=73, y=1)
+#   btn4=Button(htmlsourse_Frame,width=31,height=23,compound = LEFT,image=paste).place(x=105, y=1)
+#   mframe=Frame(htmlsourse_Frame, height=350, width=710, bg="white")
+#   mframe.place(x=0, y=28)
+
+#   attachlbframe=LabelFrame(email_Frame,text="Attachment(s)", height=350, width=280)
+#   attachlbframe.place(x=740, y=5)
+#   htcodeframe=Frame(attachlbframe, height=220, width=265, bg="white").place(x=5, y=5)
+#   lbl_btn_info=Label(attachlbframe, text="Double click on attachment to view").place(x=30, y=230)
+#   btn17=Button(attachlbframe, width=20, text="Add attacment file...").place(x=60, y=260)
+#   btn18=Button(attachlbframe, width=20, text="Remove attacment").place(x=60, y=295)
+#   lbl_tt_info=Label(email_Frame, text="You can create predefined invoice, order, estimate\nand payment receipt email templates under Main\nmenu/Settings/E-Mail templates tab")
+#   lbl_tt_info.place(x=740, y=370)
+
+#   ready_frame=Frame(mailDetail, height=20, width=1080, bg="#b3b3b3").place(x=0,y=530)
+  
+#   sendatalbframe=LabelFrame(account_Frame,text="E-Mail(Sender data)",height=270, width=600)
+#   sendatalbframe.place(x=5, y=5)
+#   lbl_sendermail=Label(sendatalbframe, text="Your company email address").place(x=5, y=30)
+#   sentent=Entry(sendatalbframe, width=40).place(x=195, y=30)
+#   lbl_orcompanyname=Label(sendatalbframe, text="Your name or company name").place(x=5, y=60)
+#   nament=Entry(sendatalbframe, width=40).place(x=195, y=60)
+#   lbl_reply=Label(sendatalbframe, text="Reply to email address").place(x=5, y=90)
+#   replyent=Entry(sendatalbframe, width=40).place(x=195, y=90)
+#   lbl_sign=Label(sendatalbframe, text="Signature").place(x=5, y=120)
+#   signent=Entry(sendatalbframe,width=50).place(x=100, y=120,height=75)
+#   confirm_chkvar=IntVar()
+#   confirm_chkbtn=Checkbutton(sendatalbframe, variable=confirm_chkvar, text="Confirmation reading", onvalue=1, offvalue=0)
+#   confirm_chkbtn.place(x=200, y=215)
+#   btn18=Button(account_Frame, width=15, text="Save settings",command=savesettings).place(x=25, y=285)
+
+#   sendatalbframe=LabelFrame(account_Frame,text="SMTP Server",height=100, width=380)
+#   sendatalbframe.place(x=610, y=5)
+#   servar=IntVar()
+#   SMTP_rbtn=Radiobutton(sendatalbframe, text="Use the Built-In SMTP Server Settings", variable=servar, value=1)
+#   SMTP_rbtn.place(x=10, y=10)
+#   MySMTP_rbtn=Radiobutton(sendatalbframe, text="Use My Own SMTP Server Settings(Recommended)", variable=servar, value=2, command=my_SMTP)
+#   MySMTP_rbtn.place(x=10, y=40)
+#   em_ser_conbtn=Button(account_Frame, text="Test E-mail Server Connection")
+#   em_ser_conbtn.place(x=710, y=110)
 
 
 
@@ -7214,7 +7525,7 @@ purchaseLabel.pack(side="left")
 w = Canvas(midFrame, width=1, height=55, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-expenseLabel = Button(midFrame,compound="top", text=" E-mail \nOrder",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=email_invoice_recurring)
+expenseLabel = Button(midFrame,compound="top", text=" E-mail \nOrder",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55)
 expenseLabel.pack(side="left")
 
 smsLabel = Button(midFrame,compound="top", text="Send SMS\nnotification",relief=RAISED, image=photo10,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=sms)
@@ -8226,7 +8537,7 @@ purchase1Label.pack(side="left")
 w = Canvas(mid1Frame, width=1, height=55, bg="#b3b3b3", bd=0)
 w.pack(side="left", padx=5)
 
-expense1Label = Button(mid1Frame,compound="top", text=" E-mail \nP.Order",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=email_invoice_recurring)
+expense1Label = Button(mid1Frame,compound="top", text=" E-mail \nP.Order",relief=RAISED, image=photo6,bg="#f8f8f2", fg="black", height=55, bd=1, width=55)
 expense1Label.pack(side="left")
 
 sms1Label = Button(mid1Frame,compound="top", text="Send SMS\nnotification",relief=RAISED, image=photo10,bg="#f8f8f2", fg="black", height=55, bd=1, width=55,command=sms)
