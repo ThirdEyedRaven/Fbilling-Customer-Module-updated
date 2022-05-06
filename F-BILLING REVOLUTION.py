@@ -2884,198 +2884,98 @@ def customersms():
 
 def import_customer():
     top=Toplevel()
-    top.title("Import Customers list from Excel(XLS)File")
-    p2 = PhotoImage(file = "images/fbicon.png")
-    top.iconphoto(False, p2)
-    top.geometry("785x540+280+100")
+    top.title("Import items list from Excel(XLS)File")
+    top.geometry("785x520+280+100")
     importframe=Frame(top)
     importframe.place(x=0,y=0,height=700,width=785)
-    impolbl=Label(importframe,text="Import source Excel(XLS) File:").place(x=10,y=10)
+    impolbl=Label(importframe,text="Import source Excel(xlsx) File:").place(x=8,y=30)
     impoentry=Entry(importframe,bg="white")
-    impoentry.place(x=10,y=40,width=400,height=25)
-    previewlbl=Label(importframe,text="Source XLS File preview").place(x=10,y=75)
-    langs = ()
-    langs_var = StringVar(value=langs)
-    listbox = Listbox(
-        importframe,
-        listvariable=langs_var,
-        width=71,
-        height=8,
-        selectmode='extended')
-    listbox.place(x=10,y=102,height=390) 
-    scrollbar = Scrollbar(
-        importframe,
-        orient='vertical',
-        command=listbox.yview
-    )
+    impoentry.place(x=8,y=50,width=280, height=25)
+    previewlbl=Label(importframe,text="Source File preview").place(x=8,y=77)
+   
+    ###### LISTBOX #####################
+    scrollbarx = Scrollbar(importframe, orient=HORIZONTAL)
+    scrollbary = Scrollbar(importframe, orient=VERTICAL)
+    importtree = ttk.Treeview(importframe, columns=("CUSTOMER ID","CUSTOMER NAME","CATEGORY","ADDRESS ","TEL","FAX ","EMAIL ","QTY UNIT","CONTACT PERSON","SHIP TO NAME"," SHIP TO ADDESS","SHIP TO TEL","SHIP TO FAX","DISCOUNT","SPECIAL TAX 1","SPECIAL TAX 2","SPECIAL TAX 2","VAT REG.NUMBER","ACTIVE","TAX EXEMPTED"), height=400,     selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+    scrollbary.config(command=importtree.yview)
+    scrollbary.place(x=354,y=100,height=325)
+    scrollbarx.config(command=importtree.xview)
+    scrollbarx.place(x=0,y=410, width=356)
+    importtree.heading('CUSTOMER ID', text="CUSTOMER ID", anchor=W)
+    importtree.heading('CUSTOMER NAME', text="CUSTOMER NAME", anchor=W)
+    importtree.heading('CATEGORY', text="CATEGORY", anchor=W)
+    importtree.heading('ADDRESS ', text="ADDRESS ", anchor=W)
+    importtree.heading('TEL', text="TEL", anchor=W)
+    importtree.heading('FAX ', text="FAX ", anchor=W)
+    importtree.heading('EMAIL ', text="EMAIL ", anchor=W)
+    importtree.heading('CONTACT PERSON', text="CONTACT PERSON", anchor=W)
+    importtree.heading('SHIP TO NAME', text="SHIP TO NAME", anchor=W)
+    importtree.heading('SHIP TO ADDRESS', text="SHIP TO ADDRESS", anchor=W)
+    importtree.heading('SHIP TO TEL', text="SHIP TO TEL", anchor=W)
+    importtree.heading('SHIP TO FAX', text="SHIP TO FAX", anchor=W)
+    importtree.heading('DISCOUNT', text="DISCOUNT", anchor=W)
+    importtree.heading('SPECIAL TAX 1', text="SPECIAL TAX 1", anchor=W)
+    importtree.heading('SPECIAL TAX 2', text="SPECIAL TAX 2", anchor=W)
+    importtree.heading('VAT REG.NUMBER', text="VAT REG.NUMBER", anchor=W)
+    importtree.heading('ACTIVE', text="ACTIVE ", anchor=W)
+    importtree.heading('TAX EXEMPTED', text="TAX EXEMPTED", anchor=W)
     
-    listbox['yscrollcommand'] = scrollbar.set
-    scrollbar.place(x=422,y=104,height=370)
 
-    scrollbar = Scrollbar(
-        importframe,
-        orient='horizontal',
-        
-        command=listbox.xview
-    ) 
-    listbox['xscrollcommand'] = scrollbar.set
-    scrollbar.place(x=12,y=474,width=427)
-    lb1=Label(importframe,text="Select import source XLs file first after build column associations").place(x=10,y=500)
+    importtree.column('#0', stretch=NO, minwidth=0, width=0)
+    importtree.column('#1', stretch=NO, minwidth=0, width=120)
+    importtree.column('#2', stretch=NO, minwidth=0, width=100)
+    importtree.column('#3', stretch=NO, minwidth=0, width=100)
+    importtree.column('#4', stretch=NO, minwidth=0, width=100)
+    importtree.column('#5', stretch=NO, minwidth=0, width=100)
+    importtree.column('#6', stretch=NO, minwidth=0, width=100)
+    importtree.column('#7', stretch=NO, minwidth=0, width=100)
+    importtree.column('#8', stretch=NO, minwidth=0, width=100)
+    importtree.column('#9', stretch=NO, minwidth=0, width=100)
+    importtree.column('#10', stretch=NO, minwidth=0, width=100)
+    importtree.column('#12', stretch=NO, minwidth=0, width=100)
+    importtree.column('#13', stretch=NO, minwidth=0, width=100)
+    importtree.column('#14', stretch=NO, minwidth=0, width=100)
+
+ 
+
+    importtree.place(x=0,y=100,height=315,width=356)
+    # langs = ()
+
+    # langs_var = StringVar(value=langs)
+
+    # listbox = Listbox(
+    #     importframe,
+    #     listvariable=langs_var,
+    #     width=60,
+    #     height=6,
+    #     selectmode='extended')
+
+    # listbox.place(x=8,y=100,height=320)
     
-    def callback(url):
-        webbrowser.open_new(url) 
+    # link a scrollbar to a list
+    # scrollbar = Scrollbar(
+    #     importframe,
+    #     orient='vertical',
+    #     command=listbox.yview
+    # )
+    
+    # listbox['yscrollcommand'] = scrollbar.set
+    # scrollbar.place(x=354,y=100,height=319)
 
-    link1 = Label(importframe, text="More info", fg="blue", cursor="hand2")
-    link1.place(x=360,y=500)
-    link1.bind("<Button-1>", lambda e: callback("https://f-billing.com/faq.php"))
-    importbutton=Button(top,command=export_customer,image=folder,compound=LEFT)
-    importbutton.place(x=410,y=40,height=25,width=30)
-    lb1=Label(importframe,text="     Please associate datafields with data columns").place(x=500,y=10)
-    id1=Label(importframe,text="CUSTOMER ID = ",fg="blue")
-    id1.place(x=460,y=40)
-    no = StringVar() 
-    idd = ttk.Combobox(importframe, width = 27, textvariable = no ) 
-    idd['values'] = ('    -NotAssociated-')
-    idd.place(x=580,y=40,height=23) 
-    idd.current(0)
-    name1=Label(importframe,text="CUSTOMER NAME = ",fg="blue")
-    name1.place(x=460,y=65)
-    namevar = StringVar() 
-    name = ttk.Combobox(importframe, width = 27, textvariable = namevar ) 
-    name['values'] = ('    -NotAssociated-' 
-                              )  
-    name.place(x=580,y=65,height=23) 
-    name.current(0)
-    category1=Label(importframe,text="CATEGORY = ",fg="blue")
-    category1.place(x=460,y=90)
-    categoryvar = StringVar() 
-    category = ttk.Combobox(importframe, width = 27, textvariable = categoryvar ) 
-    category['values'] = ('    -NotAssociated-' 
-                              ) 
-    category.place(x=580,y=90,height=23) 
-    category.current(0)
-    add=Label(importframe,text="ADDRESS = ",fg="blue")
-    add.place(x=460,y=115)
-    addvar = StringVar() 
-    addc = ttk.Combobox(importframe, width = 27, textvariable = addvar ) 
-    addc['values'] = ('    -NotAssociated-' 
-                              )
-    addc.place(x=580,y=115,height=23) 
-    addc.current(0)
-    tel1=Label(importframe,text="TEL.= ")
-    tel1.place(x=460,y=140)
-    telvar = StringVar() 
-    telc = ttk.Combobox(importframe, width = 27, textvariable = telvar ) 
-    telc['values'] = ('    -NotAssociated-' 
-                              )  
-    telc.place(x=580,y=140,height=23) 
-    telc.current(0)
-    fax1=Label(importframe,text="FAX = ")
-    fax1.place(x=460,y=165)
-    faxvar = StringVar() 
-    faxc = ttk.Combobox(importframe, width = 27, textvariable = faxvar )
-    faxc['values'] = ('    -NotAssociated-' 
-                              )
-    faxc.place(x=580,y=165,height=23) 
-    faxc.current(0)
-    email1=Label(importframe,text="EMAIL = ")
-    email1.place(x=460,y=190)
-    emailvar = StringVar() 
-    emailc = ttk.Combobox(importframe, width = 27, textvariable = emailvar ) 
-    emailc['values'] = ('    -NotAssociated-'
-                              )    
-    emailc.place(x=580,y=190,height=23) 
-    emailc.current(0)
-    cp1=Label(importframe,text="CONTACT PERSION = ")
-    cp1.place(x=460,y=215)
-    cpvar = StringVar() 
-    cp = ttk.Combobox(importframe, width = 27, textvariable = cpvar )  
-    cp['values'] = ('    -NotAssociated-' 
-                              )     
-    cp.place(x=580,y=215,height=23) 
-    cp.current(0)
-    sn2=Label(importframe,text="SHIP TO NAME = ")
-    sn2.place(x=460,y=240)
-    snvar = StringVar() 
-    sn = ttk.Combobox(importframe, width = 27, textvariable = snvar )
-    sn['values'] = ('    -NotAssociated-' 
-                              )
-    sn.place(x=580,y=240,height=23) 
-    sn.current(0)
-    saa2=Label(importframe,text="SHIP TO ADDESS = ")
-    saa2.place(x=460,y=265)
-    saa2var = StringVar() 
-    saa = ttk.Combobox(importframe, width = 27, textvariable = saa2var ) 
-    saa['values'] = ('    -NotAssociated-')
-    saa.place(x=580,y=265,height=23) 
-    saa.current(0)
-    stt2=Label(importframe,text="SHIP TO TEL. = ")
-    stt2.place(x=460,y=290)
-    stt2var = StringVar() 
-    stt = ttk.Combobox(importframe, width = 27, textvariable = stt2var )
-    stt['values'] = ('    -NotAssociated-' 
-                              ) 
-    stt.place(x=580,y=290,height=23) 
-    stt.current(0)
-    stf2=Label(importframe,text="SHIP TO FAX = ")
-    stf2.place(x=460,y=315)
-    stf2var = StringVar() 
-    stf = ttk.Combobox(importframe, width = 27, textvariable = stf2var )
-    stf['values'] = ('    -NotAssociated-' 
-                              )   
-    stf.place(x=580,y=315,height=23) 
-    stf.current(0)
-    dd2=Label(importframe,text="DISCOUNT = ")
-    dd2.place(x=460,y=340)
-    dd2var = StringVar() 
-    dd = ttk.Combobox(importframe, width = 27, textvariable = dd2var) 
-    dd['values'] = ('    -NotAssociated-'
-                              )
-    dd.place(x=580,y=340,height=23) 
-    dd.current(0)
-    st112=Label(importframe,text="SPECIAL TAX 1 = ")
-    st112.place(x=460,y=365)
-    st112var = StringVar() 
-    st11 = ttk.Combobox(importframe, width = 27, textvariable = st112var )  
-    st11['values'] = ('    -NotAssociated-' 
-                              )   
-    st11.place(x=580,y=365,height=23) 
-    st11.current(0)
-    st222=Label(importframe,text="SPECIAL TAX 2 = ")
-    st222.place(x=460,y=390)
-    st222var = StringVar() 
-    st22 = ttk.Combobox(importframe, width = 27, textvariable = st222var )
-    st22['values'] = ('    -NotAssociated-'
-                              )     
-    st22.place(x=580,y=390,height=23) 
-    st22.current(0)
-    vrn2=Label(importframe,text="VAT REG.NUMBER = ")
-    vrn2.place(x=460,y=415)
-    vrn2var = StringVar() 
-    vrn = ttk.Combobox(importframe, width = 27, textvariable = vrn2var ) 
-    vrn['values'] = ('    -NotAssociated-' 
-                              )     
-    vrn.place(x=580,y=415,height=23) 
-    vrn.current(0)
-    avt2=Label(importframe,text="ACTIVE = ")
-    avt2.place(x=460,y=440)
-    avt2var = StringVar() 
-    avt = ttk.Combobox(importframe, width = 27, textvariable = avt2var )
-    avt['values'] = ('    -NotAssociated-'
-                              )
-    avt.place(x=580,y=440,height=23) 
-    avt.current(0)
-    tee2=Label(importframe,text="TAX EXEMPTED= ")
-    tee2.place(x=460,y=465)
-    teevar = StringVar() 
-    tee= ttk.Combobox(importframe, width = 27, textvariable = teevar )
-    tee['values'] = ('    -NotAssociated-' 
-                              ) 
-    tee.place(x=580,y=465,height=23) 
-    tee.current(0)
-    btn=Button(importframe,text="Clear associations", width=15,).place(x=560, y=500)
-    btn=Button(importframe, text="Next", width=10,).place(x=685, y=500)     
-    top.mainloop()
+
+    # scrollbar12 = Scrollbar(
+    #     importframe,
+    #     orient='horizontal',
+    #     command=listbox.xview 
+    # )
+    # listbox['xscrollcommand'] = scrollbar.set
+    # scrollbar12.place(x=0,y=402, width=354)
+
+    
+    
+
+    lb1=Label(importframe,text="Select import source XLs file first after build column associations").place(x=8,y=480)
+
 
 
 
