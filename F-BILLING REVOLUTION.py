@@ -2896,7 +2896,7 @@ def import_customer():
     ###### LISTBOX #####################
     scrollbarx = Scrollbar(importframe, orient=HORIZONTAL)
     scrollbary = Scrollbar(importframe, orient=VERTICAL)
-    importtree = ttk.Treeview(importframe, columns=("CUSTOMER ID","CUSTOMER NAME","CATEGORY","ADDRESS ","TEL","FAX ","EMAIL ","QTY UNIT","CONTACT PERSON","SHIP TO NAME"," SHIP TO ADDESS","SHIP TO TEL","SHIP TO FAX","DISCOUNT","SPECIAL TAX 1","SPECIAL TAX 2","SPECIAL TAX 2","VAT REG.NUMBER","ACTIVE","TAX EXEMPTED"), height=400,     selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+    importtree = ttk.Treeview(importframe, columns=("CUSTOMER ID","CUSTOMER NAME","CATEGORY","ADDRESS ","TEL","FAX ","EMAIL ","CONTACT PERSON","SHIP TO NAME"," SHIP TO ADDRESS","SHIP TO TEL","SHIP TO FAX","DISCOUNT","SPECIAL TAX 1","SPECIAL TAX 2","SPECIAL TAX 2","VAT REG.NUMBER","ACTIVE","TAX EXEMPTED"), height=400,     selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
     scrollbary.config(command=importtree.yview)
     scrollbary.place(x=354,y=100,height=325)
     scrollbarx.config(command=importtree.xview)
@@ -2932,9 +2932,15 @@ def import_customer():
     importtree.column('#8', stretch=NO, minwidth=0, width=100)
     importtree.column('#9', stretch=NO, minwidth=0, width=100)
     importtree.column('#10', stretch=NO, minwidth=0, width=100)
+    importtree.column('#11', stretch=NO, minwidth=0, width=100)
     importtree.column('#12', stretch=NO, minwidth=0, width=100)
     importtree.column('#13', stretch=NO, minwidth=0, width=100)
     importtree.column('#14', stretch=NO, minwidth=0, width=100)
+    importtree.column('#15', stretch=NO, minwidth=0, width=100)
+    importtree.column('#16', stretch=NO, minwidth=0, width=100)
+    importtree.column('#17', stretch=NO, minwidth=0, width=100)
+    importtree.column('#18', stretch=NO, minwidth=0, width=100)
+    
 
  
 
