@@ -2886,28 +2886,28 @@ def import_customer():
     top=Toplevel()
     top.title("Import items list from Excel(XLS)File")
     top.geometry("785x520+280+100")
-    importframe=Frame(top)
-    importframe.place(x=0,y=0,height=700,width=785)
-    impolbl=Label(importframe,text="Import source Excel(xlsx) File:").place(x=8,y=30)
-    impoentry=Entry(importframe,bg="white")
+    exportfm=Frame(top)
+    exportfm.place(x=0,y=0,height=700,width=1585)
+    impolbl=Label(exportfm,text="Import source Excel(xlsx) File:").place(x=8,y=30)
+    impoentry=Entry(exportfm,bg="white")
     impoentry.place(x=8,y=50,width=280, height=25)
-    previewlbl=Label(importframe,text="Source File preview").place(x=8,y=77)
+    previewlbl=Label(exportfm,text="Source File preview").place(x=8,y=77)
    
     ###### LISTBOX #####################
-    scrollbarx = Scrollbar(importframe, orient=HORIZONTAL)
-    scrollbary = Scrollbar(importframe, orient=VERTICAL)
-    importtree = ttk.Treeview(importframe, columns=("CUSTOMER ID","CUSTOMER NAME","CATEGORY","ADDRESS ","TEL","FAX ","EMAIL ","CONTACT PERSON","SHIP TO NAME"," SHIP TO ADDRESS","SHIP TO TEL","SHIP TO FAX","DISCOUNT","SPECIAL TAX 1","SPECIAL TAX 2","SPECIAL TAX 2","VAT REG.NUMBER","ACTIVE","TAX EXEMPTED"), height=400,     selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+    scrollbarx = Scrollbar(exportfm, orient=HORIZONTAL)
+    scrollbary = Scrollbar(exportfm, orient=VERTICAL)
+    importtree = ttk.Treeview(exportfm, column=("CUSTOMER ID","CUSTOMER NAME","CATEGORY","ADDRESS ","TEL","FAX ","EMAIL ","CONTACT PERSON","SHIP TO NAME","SHIP TO ADDRESS","SHIP TO TEL","SHIP TO FAX","DISCOUNT","SPECIAL TAX 1","SPECIAL TAX 2","VAT REG.NUMBER","ACTIVE","TAX EXEMPTED"), height=400, selectmode="extended", yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
     scrollbary.config(command=importtree.yview)
-    scrollbary.place(x=354,y=100,height=325)
+    scrollbary.place(x=0,y=200,height=425)
     scrollbarx.config(command=importtree.xview)
-    scrollbarx.place(x=0,y=410, width=356)
+    scrollbarx.place(x=0,y=510, width=456)
     importtree.heading('CUSTOMER ID', text="CUSTOMER ID", anchor=W)
     importtree.heading('CUSTOMER NAME', text="CUSTOMER NAME", anchor=W)
     importtree.heading('CATEGORY', text="CATEGORY", anchor=W)
     importtree.heading('ADDRESS ', text="ADDRESS ", anchor=W)
     importtree.heading('TEL', text="TEL", anchor=W)
     importtree.heading('FAX ', text="FAX ", anchor=W)
-    importtree.heading('EMAIL ', text="EMAIL ", anchor=W)
+    importtree.heading('EMAIL ', text="EMAIL", anchor=W)
     importtree.heading('CONTACT PERSON', text="CONTACT PERSON", anchor=W)
     importtree.heading('SHIP TO NAME', text="SHIP TO NAME", anchor=W)
     importtree.heading('SHIP TO ADDRESS', text="SHIP TO ADDRESS", anchor=W)
@@ -2922,35 +2922,35 @@ def import_customer():
     
 
     importtree.column('#0', stretch=NO, minwidth=0, width=0)
-    importtree.column('#1', stretch=NO, minwidth=0, width=120)
-    importtree.column('#2', stretch=NO, minwidth=0, width=100)
-    importtree.column('#3', stretch=NO, minwidth=0, width=100)
-    importtree.column('#4', stretch=NO, minwidth=0, width=100)
-    importtree.column('#5', stretch=NO, minwidth=0, width=100)
-    importtree.column('#6', stretch=NO, minwidth=0, width=100)
-    importtree.column('#7', stretch=NO, minwidth=0, width=100)
-    importtree.column('#8', stretch=NO, minwidth=0, width=100)
-    importtree.column('#9', stretch=NO, minwidth=0, width=100)
-    importtree.column('#10', stretch=NO, minwidth=0, width=100)
-    importtree.column('#11', stretch=NO, minwidth=0, width=100)
-    importtree.column('#12', stretch=NO, minwidth=0, width=100)
-    importtree.column('#13', stretch=NO, minwidth=0, width=100)
-    importtree.column('#14', stretch=NO, minwidth=0, width=100)
-    importtree.column('#15', stretch=NO, minwidth=0, width=100)
-    importtree.column('#16', stretch=NO, minwidth=0, width=100)
-    importtree.column('#17', stretch=NO, minwidth=0, width=100)
-    importtree.column('#18', stretch=NO, minwidth=0, width=100)
+    importtree.column('#1', stretch=NO, minwidth=0, width=80)
+    importtree.column('#2', stretch=NO, minwidth=0, width=63)
+    importtree.column('#3', stretch=NO, minwidth=0, width=60)
+    importtree.column('#4', stretch=NO, minwidth=0, width=60)
+    importtree.column('#5', stretch=NO, minwidth=0, width=60)
+    importtree.column('#6', stretch=NO, minwidth=0, width=60)
+    importtree.column('#7', stretch=NO, minwidth=0, width=60)
+    importtree.column('#8', stretch=NO, minwidth=0, width=110)
+    importtree.column('#9', stretch=NO, minwidth=0, width=88)
+    importtree.column('#10', stretch=NO, minwidth=0, width=107)
+    importtree.column('#11', stretch=NO, minwidth=0, width=70)
+    importtree.column('#12', stretch=NO, minwidth=0, width=70)
+    importtree.column('#13', stretch=NO, minwidth=0, width=67)
+    importtree.column('#14', stretch=NO, minwidth=0, width=80)
+    importtree.column('#15', stretch=NO, minwidth=0, width=81)
+    importtree.column('#16', stretch=NO, minwidth=0, width=107)
+    importtree.column('#17', stretch=NO, minwidth=0, width=60)
+    importtree.column('#18', stretch=NO, minwidth=0, width=85)
     
 
  
 
-    importtree.place(x=0,y=100,height=315,width=356)
+    importtree.place(x=0,y=100,height=915,width=5250)
     # langs = ()
 
     # langs_var = StringVar(value=langs)
 
     # listbox = Listbox(
-    #     importframe,
+    #     exportfm,
     #     listvariable=langs_var,
     #     width=60,
     #     height=6,
@@ -2960,7 +2960,7 @@ def import_customer():
     
     # link a scrollbar to a list
     # scrollbar = Scrollbar(
-    #     importframe,
+    #     exportfm,
     #     orient='vertical',
     #     command=listbox.yview
     # )
@@ -2970,7 +2970,7 @@ def import_customer():
 
 
     # scrollbar12 = Scrollbar(
-    #     importframe,
+    #     exportfm,
     #     orient='horizontal',
     #     command=listbox.xview 
     # )
@@ -2980,7 +2980,7 @@ def import_customer():
     
     
 
-    lb1=Label(importframe,text="Select import source XLs file first after build column associations").place(x=8,y=480)
+    lb1=Label(exportfm,text="Select import source XLs file first after build column associations").place(x=8,y=480)
 
 
 
@@ -8834,12 +8834,12 @@ def fileimport_product():
     top=Toplevel()
     top.title("Import items list from Excel(XLS)File")
     top.geometry("785x520+280+100")
-    importframe=Frame(top)
-    importframe.place(x=0,y=0,height=700,width=785)
-    impolbl=Label(importframe,text="Import source Excel(xlsx) File:").place(x=8,y=30)
-    impoentry=Entry(importframe,bg="white")
+    exportfm=Frame(top)
+    exportfm.place(x=0,y=0,height=700,width=785)
+    impolbl=Label(exportfm,text="Import source Excel(xlsx) File:").place(x=8,y=30)
+    impoentry=Entry(exportfm,bg="white")
     impoentry.place(x=8,y=50,width=280, height=25)
-    previewlbl=Label(importframe,text="Source File preview").place(x=8,y=77)
+    previewlbl=Label(exportfm,text="Source File preview").place(x=8,y=77)
    
     ###### LISTBOX #####################
     langs = ()
@@ -8847,7 +8847,7 @@ def fileimport_product():
     langs_var = StringVar(value=langs)
 
     listbox = Listbox(
-        importframe,
+        exportfm,
         listvariable=langs_var,
         width=60,
         height=6,
@@ -8857,7 +8857,7 @@ def fileimport_product():
     
     # link a scrollbar to a list
     scrollbar = Scrollbar(
-        importframe,
+        exportfm,
         orient='vertical',
         command=listbox.yview
     )
@@ -8867,23 +8867,23 @@ def fileimport_product():
        
 
 
-    lb1=Label(importframe,text="Select import source XLs file first after build column associations").place(x=8,y=480)
+    lb1=Label(exportfm,text="Select import source XLs file first after build column associations").place(x=8,y=480)
 
     def callback(url):
         webbrowser.open_new(url)
-    # link1 = Label(importframe, text="More info", fg="blue", cursor="hand2")
+    # link1 = Label(exportfm, text="More info", fg="blue", cursor="hand2")
     # link1.place(x=360,y=480)
     # link1.bind("<Button-1>", lambda e: callback("https://f-billing.com/faq.php"))
     
     importbutton=Button(top,command=export_product,text = 'Browse',compound=LEFT)
     importbutton.place(x=290,y=48,height=25,width=80)
 
-    lb1=Label(importframe,text="Please associate datafields with data columns").place(x=460,y=30)
+    lb1=Label(exportfm,text="Please associate datafields with data columns").place(x=460,y=30)
 
-    id1=Label(importframe,text="ID = ",pady=5,padx=10,fg="blue")
+    id1=Label(exportfm,text="ID = ",pady=5,padx=10,fg="blue")
     id1.place(x=450,y=70)
     no = StringVar() 
-    idd = ttk.Combobox(importframe, width = 27, textvariable = no ) 
+    idd = ttk.Combobox(exportfm, width = 27, textvariable = no ) 
       
     # Adding combobox drop down list 
     idd['values'] = ('notassociated' 
@@ -8892,10 +8892,10 @@ def fileimport_product():
     idd.place(x=570,y=78) 
     idd.current(0)
 
-    name1=Label(importframe,text="NAME = ",pady=5,padx=10,fg="blue")
+    name1=Label(exportfm,text="NAME = ",pady=5,padx=10,fg="blue")
     name1.place(x=450,y=92)
     namevar = StringVar() 
-    name = ttk.Combobox(importframe, width = 27, textvariable = namevar ) 
+    name = ttk.Combobox(exportfm, width = 27, textvariable = namevar ) 
       
     # Adding combobox drop down list 
     name['values'] = ('notassociated' 
@@ -8905,10 +8905,10 @@ def fileimport_product():
     name.current(0)
 
 
-    category1=Label(importframe,text="CATEGORY = ",pady=5,padx=10,fg="blue")
+    category1=Label(exportfm,text="CATEGORY = ",pady=5,padx=10,fg="blue")
     category1.place(x=450,y=117)
     categoryvar = StringVar() 
-    category = ttk.Combobox(importframe, width = 27, textvariable = categoryvar ) 
+    category = ttk.Combobox(exportfm, width = 27, textvariable = categoryvar ) 
       
     # Adding combobox drop down list 
     category['values'] = ('notassociated' 
@@ -8917,10 +8917,10 @@ def fileimport_product():
     category.place(x=570,y=118) 
     category.current(0)
 
-    desc1=Label(importframe,text="DESCRIPTION = ",pady=5,padx=10)
+    desc1=Label(exportfm,text="DESCRIPTION = ",pady=5,padx=10)
     desc1.place(x=450,y=139)
     descvar = StringVar() 
-    desc = ttk.Combobox(importframe, width = 27, textvariable = descvar ) 
+    desc = ttk.Combobox(exportfm, width = 27, textvariable = descvar ) 
       
     # Adding combobox drop down list 
     desc['values'] = ('notassociated' 
@@ -8929,10 +8929,10 @@ def fileimport_product():
     desc.place(x=570,y=140) 
     desc.current(0)
 
-    quan1=Label(importframe,text="QUANTITY= ",pady=5,padx=10)
+    quan1=Label(exportfm,text="QUANTITY= ",pady=5,padx=10)
     quan1.place(x=450,y=161)
     quanvar = StringVar() 
-    quantity = ttk.Combobox(importframe, width = 27, textvariable = categoryvar ) 
+    quantity = ttk.Combobox(exportfm, width = 27, textvariable = categoryvar ) 
       
     # Adding combobox drop down list 
     quantity['values'] = ('notassociated' 
@@ -8941,10 +8941,10 @@ def fileimport_product():
     quantity.place(x=570,y=166) 
     quantity.current(0)
 
-    cost1=Label(importframe,text="COST = ",pady=5,padx=10)
+    cost1=Label(exportfm,text="COST = ",pady=5,padx=10)
     cost1.place(x=450,y=183)
     costvar = StringVar() 
-    cost = ttk.Combobox(importframe, width = 27, textvariable = costvar ) 
+    cost = ttk.Combobox(exportfm, width = 27, textvariable = costvar ) 
       
     # Adding combobox drop down list 
     cost['values'] = ('notassociated' 
@@ -8953,10 +8953,10 @@ def fileimport_product():
     cost.place(x=570,y=192) 
     cost.current(0)
 
-    price1=Label(importframe,text="PRICE = ",pady=5,padx=10,fg="blue")
+    price1=Label(exportfm,text="PRICE = ",pady=5,padx=10,fg="blue")
     price1.place(x=450,y=205)
     pricevar = StringVar() 
-    price = ttk.Combobox(importframe, width = 27, textvariable = costvar ) 
+    price = ttk.Combobox(exportfm, width = 27, textvariable = costvar ) 
       
     # Adding combobox drop down list 
     price['values'] = ('notassociated' 
@@ -8966,10 +8966,10 @@ def fileimport_product():
     price.current(0)
 
 
-    taxx1=Label(importframe,text="TAX1 = ",pady=5,padx=10,fg="blue")
+    taxx1=Label(exportfm,text="TAX1 = ",pady=5,padx=10,fg="blue")
     taxx1.place(x=450,y=230)
     taxvar = StringVar() 
-    tax = ttk.Combobox(importframe, width = 27, textvariable = taxvar ) 
+    tax = ttk.Combobox(exportfm, width = 27, textvariable = taxvar ) 
       
     # Adding combobox drop down list 
     tax['values'] = ('notassociated' 
@@ -8978,10 +8978,10 @@ def fileimport_product():
     tax.place(x=570,y=243) 
     tax.current(0)
 
-    taxx2=Label(importframe,text="TAX2 = ",pady=5,padx=10)
+    taxx2=Label(exportfm,text="TAX2 = ",pady=5,padx=10)
     taxx2.place(x=450,y=262)
     tax2var = StringVar() 
-    tax2 = ttk.Combobox(importframe, width = 27, textvariable = tax2var ) 
+    tax2 = ttk.Combobox(exportfm, width = 27, textvariable = tax2var ) 
       
     # Adding combobox drop down list 
     tax2['values'] = ('notassociated' 
@@ -8990,10 +8990,10 @@ def fileimport_product():
     tax2.place(x=570,y=270) 
     tax2.current(0)
 
-    stock2=Label(importframe,text="STOCK = ",pady=5,padx=10)
+    stock2=Label(exportfm,text="STOCK = ",pady=5,padx=10)
     stock2.place(x=450,y=291)
     stock2var = StringVar() 
-    stock2 = ttk.Combobox(importframe, width = 27, textvariable = stock2var ) 
+    stock2 = ttk.Combobox(exportfm, width = 27, textvariable = stock2var ) 
       
     # Adding combobox drop down list 
     stock2['values'] = ('notassociated')
@@ -9002,10 +9002,10 @@ def fileimport_product():
     stock2.current(0)
 
 
-    lowstock2=Label(importframe,text="LOW STOCK = ",pady=5,padx=10)
+    lowstock2=Label(exportfm,text="LOW STOCK = ",pady=5,padx=10)
     lowstock2.place(x=450,y=315)
     lowstock2var = StringVar() 
-    lowstock = ttk.Combobox(importframe, width = 27, textvariable = lowstock2var ) 
+    lowstock = ttk.Combobox(exportfm, width = 27, textvariable = lowstock2var ) 
       
     # Adding combobox drop down list 
     lowstock['values'] = ('notassociated' 
@@ -9015,10 +9015,10 @@ def fileimport_product():
     lowstock.current(0)
 
 
-    location2=Label(importframe,text="LOCATION = ",pady=5,padx=10)
+    location2=Label(exportfm,text="LOCATION = ",pady=5,padx=10)
     location2.place(x=450,y=339)
     Location2var = StringVar() 
-    location = ttk.Combobox(importframe, width = 27, textvariable = Location2var ) 
+    location = ttk.Combobox(exportfm, width = 27, textvariable = Location2var ) 
       
     # Adding combobox drop down list 
     location['values'] = ('notassociated' 
@@ -9028,10 +9028,10 @@ def fileimport_product():
     location.current(0)
 
 
-    active2=Label(importframe,text="ACTIVE = ",pady=5,padx=10)
+    active2=Label(exportfm,text="ACTIVE = ",pady=5,padx=10)
     active2.place(x=450,y=363)
     active2var = StringVar() 
-    active = ttk.Combobox(importframe, width = 27, textvariable = active2var ) 
+    active = ttk.Combobox(exportfm, width = 27, textvariable = active2var ) 
       
     # Adding combobox drop down list 
     active['values'] = ('notassociated' 
@@ -9040,10 +9040,10 @@ def fileimport_product():
     active.place(x=570,y=370) 
     active.current(0)
 
-    service2=Label(importframe,text="SERVICE = ",pady=5,padx=10)
+    service2=Label(exportfm,text="SERVICE = ",pady=5,padx=10)
     service2.place(x=450,y=387)
     service2var = StringVar() 
-    service = ttk.Combobox(importframe, width = 27, textvariable = service2var ) 
+    service = ttk.Combobox(exportfm, width = 27, textvariable = service2var ) 
       
     # Adding combobox drop down list 
     service['values'] = ('notassociated' 
@@ -9053,8 +9053,8 @@ def fileimport_product():
     service.current(0)
 
 
-    b = Button(importframe,text = "Clear associations").place(x=600,y=470)  
-    n = Button(importframe, text ="Next").place(x=710,y=470)
+    b = Button(exportfm,text = "Clear associations").place(x=600,y=470)  
+    n = Button(exportfm, text ="Next").place(x=710,y=470)
   
     
     top.mainloop()
