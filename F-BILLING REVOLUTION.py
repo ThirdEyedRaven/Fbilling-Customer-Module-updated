@@ -3291,6 +3291,17 @@ def catg(event):
   dt2 = fbcursor.fetchall()
 
 
+  ssql = "select * from Customer where customertype=%s"
+  val = ('Client' )
+  fbcursor.execute(ssql, val)
+  dt3 = fbcursor.fetchall()
+
+  tsql = "select * from Customer where customertype=%s"
+  val = ('Vendor' )
+  fbcursor.execute(tsql, val)
+  dt4 = fbcursor.fetchall()
+
+
   if catfilter == "View all records":
     print('hi')
     for record in customertree.get_children():
@@ -3307,9 +3318,22 @@ def catg(event):
     for i in dt2:
       customertree.insert(parent='', index='end', iid=i, text='hello', values=('', i[0], i[2], i[4], i[8], i[10], i[12], i[22]))
       countp += 1
-
-
-  
+  elif catfilter == "View only Client Type":
+    print ('hk')
+    for record in customertree.get_children():
+      customertree.delete(record)
+    countp = 0
+    for i in dt3:
+      customertree.insert(parent='', index='end', iid=i, text='hello', values=('', i[0], i[2], i[4], i[8], i[10], i[12], i[22]))
+      countp += 1
+  elif catfilter == "View only Vendor Type":
+    print('hello')
+    for record in customertree.get_children():
+      customertree.delete(record)
+    countp = 0
+    for i in dt4:
+      customertree.insert(parent='', index='end', iid=i, text='hello', values=('', i[0], i[2], i[4], i[8], i[10], i[12], i[22]))
+      countp += 1
   
 
 listbox12 = Listbox(tab7,height =8,  
